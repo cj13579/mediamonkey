@@ -11,25 +11,22 @@
         <ul>
             <li><b>TVShows</b></li>
             <li><a href="tvmonkey.php" target="main">Library</a></li>
-            	<ul>
-            		<li><a href="#" target="main">Add</a></li>
-            		<li><a href="#" target="main">Search</a></li>
-            	</ul>
-            </li>
+            <li><a href="./TV" target="main">TV</a></li>
+            <li><a href="./TV2" target="main">TV2</a></li>
 			<li><b>Movies</b></li>
-            <li><a href="moviemonkey.php" target="main">Library</a>
-                <ul>
-                    <li><a href="#" target="main">Add</a></li>
-                    <li><a href="#" target="main">Search</a></li>
-                </ul>
-            </li>
-			<li><b>System</b></li>
+            <li><a href="moviemonkey.php" target="main">Library</a></li>
+           <!--     <ul>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Search</a></li>
+                </ul> -->
+            <li><a href="./Films" target="main">Films</a></li>
+			<!--<li><b>System</b></li>
 			<li>
 			    <ul>
-                    <li><a href="#" target="main">tvshow settings</a></li>
-                    <li><a href="#" target="main">movie settings</a></li>
+                    <li><a href="#">show settings</a></li>
+                    <li><a href="#">movie settings</a></li>
                 </ul>
-			</li>
+			</li>-->
 		</ul>
     </div>
 

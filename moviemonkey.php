@@ -75,8 +75,8 @@ if (!$con)
 $rc=30;
 
 
-mysql_select_db("xbmc_videos67", $con);
-$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'thumb' ORDER BY movie.c00";
+mysql_select_db("xbmc_videos75", $con);
+$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'poster' ORDER BY movie.c00";
 
 $result = mysql_query($sql) or die(mysql_error());
 //count results
@@ -103,7 +103,7 @@ elseif ($pagenum > $last)
 
 	
 $max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
-$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'thumb' ORDER BY movie.c00 $max";
+$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'poster' ORDER BY movie.c00 $max";
 
 $result = mysql_query($sql) or die(mysql_error());
 $rows = mysql_num_rows($result);
@@ -127,7 +127,7 @@ $rows = mysql_num_rows($result);
 	<tr>
 <?php
 
-$per_row=10;
+$per_row=6;
 $split=0;
 	
 	while($row = mysql_fetch_array($result))

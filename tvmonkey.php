@@ -127,7 +127,7 @@ $rows = mysql_num_rows($result);
 		<tr>
 <?php
 
-$per_row=10;
+$per_row=6;
 $split=0;
 	
 	while($row = mysql_fetch_array($result))

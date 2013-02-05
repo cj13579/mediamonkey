@@ -151,7 +151,7 @@ function _get_hash($file_path)
 		$x = substr($path, 0, 1);
 		$array = array("$x", "$path");
 		$path = implode("/",$array);	
-		echo "<img src='./Thumbnails/$path.jpg' alt='$title' width='250' height='300'/>";
+		echo "<img src='./Thumbnails/$path.jpg' alt='$title' width='150' height='200'/>";
 		echo "</td>";
 		echo "<td><p>";
 		echo "<strong>Title: </strong>$title </br>";
@@ -160,7 +160,7 @@ function _get_hash($file_path)
 		echo "</br>";
 		echo "<strong>Channel: </strong> $channel </br>";
 		echo "</br>";
-		echo "<strong>Download (Local only): </strong> $link </br>";
+		echo "<strong>Download : </strong> Coming Soon!</br>";
 		echo "</br>";
 		echo "</p></td>";
 		echo "</tr>";

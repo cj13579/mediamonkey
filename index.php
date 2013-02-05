@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
- <title>TVMonkey Web Interface</title>
+ <title>MediaMonkey Web Interface</title>
  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
