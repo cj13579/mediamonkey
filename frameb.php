@@ -20,6 +20,7 @@
                     <li><a href="#">Search</a></li>
                 </ul> -->
             <li><a href="./Films" target="main">Films</a></li>
+            <li><a href="search.php" target="main">search</a></li>
 			<!--<li><b>System</b></li>
 			<li>
 			    <ul>
