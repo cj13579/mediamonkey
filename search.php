@@ -83,7 +83,7 @@ if(isset($_POST['terms']))
 <div id="container">
     <div id="content">
     <p><p><p><p><p><p>
-    Use the box below to search the movie database. The results will be display the front covers of the movies that match your search. To find out detailed information or to download it, click on the cover.
+    Use the box below to search the movie database. The results will be displayed as front covers of the movies that match your search. To find out detailed information about the movie or to download it, click on the cover.
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" name="finder">
     <input type="text" name="terms">
     <input type="submit" name="search" value="Search">    
