@@ -43,7 +43,16 @@ button {
 .left { float: left;}
 .center { margin: 0 auto; text-align: center;}
 
-#container { width: 700px;}
+#container { width: max;}
+
+#container p {
+    line-height: 1.4em; 
+    font-size: 0.7em; 
+    margin-bottom: 20px; 
+	margin-top: 30px; 
+    color: #f4f4f4;
+	float: right;
+}
  
 #logo { float: left;}
 
@@ -53,6 +62,7 @@ button {
     font-size: 1.6em;
     letter-spacing: -0.1em;
 }
+
  
 #search {
     margin-top: 30px;

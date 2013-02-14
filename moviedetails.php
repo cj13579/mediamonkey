@@ -161,6 +161,7 @@ $result = mysql_query($sql) or die(mysql_error());
 		echo "</br>";
 		echo "<strong>Download: </strong> 
 		<input type=\"hidden\" name=\"download\" value=\"".$str3."\">
+		<input type=\"hidden\" name=\"id\" value=\"".$id."\">
 		<input type=\"submit\" name=\"submit\" value=\"Download\">
 		 </br>";
 		echo "</br>";
