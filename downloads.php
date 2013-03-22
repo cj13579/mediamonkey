@@ -11,8 +11,8 @@ $file = $_POST['file'];
 $host = $_SERVER['SERVER_NAME'];
 $port = $_SERVER['SERVER_PORT'];
 
-# *** CUSTOM VARIBALE ***
-$uri = "downloads";
+# CUSTOM VARIBALE
+$uri = "";
 
 if(is_null($file))
 {
