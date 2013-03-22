@@ -66,7 +66,7 @@ if (!mysql_query($sql,$con))
 	die('Error: ' . mysql_error());
 }
 
-if(!isset($uri))
+if(is_null($uri))
 {
 header("location:http://$host:$port/$download");
 }
@@ -90,7 +90,7 @@ if (!mysql_query($sql,$con))
 	die('Error: ' . mysql_error());
 }
 
-if(!isset($uri))
+if(is_null($uri))
 {
 echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$download\">";
 }
