@@ -24,16 +24,24 @@ if(isset($_POST['directory']))
 			{
 				$directory = 'Films';
 				$scanned_dir = array_diff(scandir($directory), array('..', '.','.AppleDesktop','.AppleDouble','.AppleDBFile','.AppleDB'));		
+				echo "<table>";
+				echo "<tr>";
+				echo "<td><p><b>Directory/File Name</td><td></td><td></td>";
+				echo "</tr>";
 				foreach ($scanned_dir as $value) 
 				{
 					if (is_dir("$directory/$value"))
 					{
 						$a = "$directory/$value";
 						#echo "Directory : $value <br>";
-						echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
-						echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
-						echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
-						echo "</form>";
+						echo "<tr>";
+						echo "<td>";
+							echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
+							echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
+							echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
+							echo "</form>";
+						echo "</td>";
+						echo "</tr>";
 						#echo "<a href=\"$directory/$value\">$value</a>	<br>";
 					}
 					else
@@ -41,41 +49,84 @@ if(isset($_POST['directory']))
 						#echo "File : $value <br>";
 					}
 				}
+				echo "</table>";
 			}
 			else
 			{
 				$directory = "$directory";
-				$scanned_dir = array_diff(scandir($directory), array('..', '.','.AppleDesktop','.AppleDouble','.AppleDBFile','.AppleDB'));		
+				$scanned_dir = array_diff(scandir($directory), array('..', '.','.AppleDesktop','.AppleDouble','.AppleDBFile','.AppleDB'));	
+				echo "<table>";	
+				echo "<tr>";
+				echo "<td><p><b>Directory/File Name</td><td></td><td></td>";
+				echo "</tr>";
 				foreach ($scanned_dir as $value) 
 				{
 					if (is_dir("$directory/$value"))
 					{
 						$a = "$directory/$value";
 						#echo "Directory : $value <br>";
-						echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
-						echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
-						echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
-						echo "</form>";
+						echo "<tr>";
+						echo "<td>";
+							echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
+							echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
+							echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
+							echo "</form>";
+						echo "</td>";
+						echo "</tr>";
 						#echo "<a href=\"$directory/$value\">$value</a>	<br>";
 					}
 					else
 					{
 						if (preg_match("/\.(avi|mp4|mkv|m4v)/",$value))
 						{
-							echo "<p>";
-							echo "To download this file, click the button:";
-							echo "<p>";
 							$b = "$directory/$value";
-							echo "<form method=\"post\" action=\"downloads.php\" />";
-							echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
-							echo "<input type=\"hidden\" name=\"file\" value=\"".$value."\">";
-							echo "<input type=\"hidden\" name=\"type\" value=\"movie\">";
-							echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
-							echo "</form>";
-							echo "<p>";
+							echo "<table style=\"vertical-align:bottom\">";
+							echo "<tr>";
+							echo "<td valign=\"bottom\">";
+								echo "<p>$value";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>";
+								echo "<form method=\"post\" action=\"downloads.php\" />";
+								echo "<input type=\"hidden\" name=\"dl\" value=\"1\">";
+								echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
+								echo "<input type=\"hidden\" name=\"file\" value=\"".$value."\">";
+								echo "<input type=\"hidden\" name=\"type\" value=\"movdl\">";
+								echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
+								echo "</form>";
+							echo "</td>";
+							echo "<td></td>";
+							if (preg_match("/\.(mp4)/",$value))
+							{
+								echo "<td>";
+									echo "<p>";
+									echo "<form method=\"post\" action=\"downloads.php\" />";
+									echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
+									echo "<input type=\"hidden\" name=\"stream\" value=\"1\">";
+									echo "<input type=\"hidden\" name=\"file\" value=\"".$value."\">";
+									echo "<input type=\"hidden\" name=\"type\" value=\"movs1\">";
+									echo "<input type=\"submit\" name=\"submit\" value=\"Stream (inline)\">";
+									echo "</form>";
+								echo "</td>";
+							}
+							if (preg_match("/\.(mp4)/",$value))
+							{
+								echo "<td>";
+									echo "<p>";
+									echo "<form method=\"post\" action=\"downloads.php\" target=\"_blank\"/>";
+									echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
+									echo "<input type=\"hidden\" name=\"stream\" value=\"2\">";
+									echo "<input type=\"hidden\" name=\"file\" value=\"".$value."\">";
+									echo "<input type=\"hidden\" name=\"type\" value=\"movst2\">";
+									echo "<input type=\"submit\" name=\"submit\" value=\"Stream (new window)\">";
+									echo "</form>";
+								echo "</td>";
+							}
+							echo "</tr>";						
 						}
 					}
 				}
+				echo "</table>";
 			}
 			?>
 		</div>
