@@ -11,7 +11,8 @@ $file = $_POST['file'];
 $host = $_SERVER['SERVER_NAME'];
 $port = $_SERVER['SERVER_PORT'];
 
-
+# *** CUSTOM VARIBALE ***
+$uri = "downloads";
 
 if(is_null($file))
 {
@@ -64,7 +65,15 @@ if (!mysql_query($sql,$con))
 {
 	die('Error: ' . mysql_error());
 }
+
+if(!isset($uri))
+{
 header("location:http://$host:$port/$download");
+}
+else
+{
+header("location:http://$host:$port/$uri/$download");
+}
 
 }
 
@@ -81,7 +90,15 @@ if (!mysql_query($sql,$con))
 	die('Error: ' . mysql_error());
 }
 
+if(!isset($uri))
+{
 echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$download\">";
+}
+else
+{
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri/$download\">";
+}
+
 }
 
 ?>
