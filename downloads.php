@@ -3,6 +3,7 @@
 //Set variables up
 $username = getenv("REMOTE_USER"); 
 $download = $_POST["download"];
+$dl = $_POST["dl"];
 $stream = $_POST["stream"];
 $med_type = $_POST["type"];
 $id = $_POST["id"];
