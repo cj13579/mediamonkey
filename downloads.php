@@ -1,5 +1,7 @@
 <?php
 
+include_once "local_config.php";
+
 //Set variables up
 $username = getenv("REMOTE_USER"); 
 $download = $_POST["download"];
@@ -28,9 +30,9 @@ else
 if (isset($dl))
 {
 
-$con = mysql_connect("localhost","mmonkey","mmonkey");
+$con = mysql_connect("$db_host","$db_user","$db_pass");
 
-$sql = "INSERT INTO mediamonkey.stats_test (user, idMovie, dttm, stat_id, type, file, med_type) 
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
@@ -57,9 +59,9 @@ if (!mysql_query($sql,$con))
 if ($stream == "1")
 {
 
-$con = mysql_connect("localhost","mmonkey","mmonkey");
+$con = mysql_connect("$db_host","$db_user","$db_pass");
 
-$sql = "INSERT INTO mediamonkey.stats_test (user, idMovie, dttm, stat_id, type, file, med_type) 
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
@@ -81,9 +83,9 @@ header("location:http://$host:$port/$uri/$download");
 if ($stream == "2" )
 {
 
-$con = mysql_connect("localhost","mmonkey","mmonkey");
+$con = mysql_connect("$db_host","$db_user","$db_pass");
 
-$sql = "INSERT INTO mediamonkey.stats_test (user, idMovie, dttm, stat_id, type, file, med_type) 
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
@@ -98,6 +100,30 @@ echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$download\
 else
 {
 echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri/$download\">";
+}
+
+}
+
+if ($stream == "3" )
+{
+
+$con = mysql_connect("$db_host","$db_user","$db_pass");
+
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
+VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
+
+if (!mysql_query($sql,$con))
+{
+	die('Error: ' . mysql_error());
+}
+
+if(is_null($uri))
+{
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port$download\">";
+}
+else
+{
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri$download\">";
 }
 
 }
