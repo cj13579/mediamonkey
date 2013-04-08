@@ -9,7 +9,7 @@
   <frame src="framea.php" id="logo"/>
   <frameset cols="160px,70%" border="0">
     <frame src="frameb.php" id="menu" name="menu"/>
-    <frame src="framec.php" id="main" name="main"/>
+    <frame src="main.php" id="main" name="main"/>
   </frameset>
 </frameset>
 
