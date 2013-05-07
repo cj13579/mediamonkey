@@ -10,19 +10,15 @@ include_once "local_config.php";
 <body>
 <div id="container">
     <div id="content">
-		<div id="home" name="home1" >
-
 		<table>
   			<tr>
-    			<td><h3>Latest TV</h3></td>
-				<td align="right"><h3>Latest Films</h3></td>
+    			<td><h3>Latest TV</h3></td><td></td><td align="right"><h3>Latest Films</h3></td>
 			</tr>
 			<tr>
-				<td align="right" valign="top">
-				<p>
+				<td align="right" valign="top"style="line-height: 1.4em; font-size: 0.7em; margin-bottom: 20px; color: #f4f4f4;" >
     		<?php
 			
-			$con = mysql_connect("localhost","xbmc","xbmc");
+			$con = mysql_connect("$xbmc_db_host","$xbmc_db_user","$xbmc_db_pass");
 			if (!$con)
 			{
 				die('Could not connect: ' . mysql_error());
@@ -47,7 +43,8 @@ include_once "local_config.php";
 				{
 				
 				$showName = $row2['c00'];
-				$sql3 = "SELECT distinct ep.c00 as epTitle, ep.c13, ep.c18, ep.dateAdded, ep.strFileName, ep.strPath, se.season FROM episodeview ep, tvshowview tv, seasons se WHERE tv.idShow and ep.idShow = $showid and tv.c00 = '$showName' and ep.idEpisode = $epid and se.idSeason = $seaid";
+				$showName1 = mysql_escape_string($row2['c00']);
+				$sql3 = "SELECT distinct ep.c00 as epTitle, ep.c13, ep.c18, ep.dateAdded, ep.strFileName, ep.strPath, se.season FROM episodeview ep, tvshowview tv, seasons se WHERE tv.idShow and ep.idShow = $showid and tv.c00 = '$showName1' and ep.idEpisode = $epid and se.idSeason = $seaid";
 				$result3 = mysql_query($sql3) or die(mysql_error());
 				$rows3 = mysql_num_rows($result3);
 				
@@ -87,8 +84,7 @@ include_once "local_config.php";
 			</td>
 			<td>
 			</td>
-			<td valign="top" align="right">
-			<p>
+			<td valign="top" align="right" style="line-height: 1.4em; font-size: 0.7em; margin-bottom: 20px; color: #f4f4f4;" >
     		<?php
 			
 			$con = mysql_connect("localhost","xbmc","xbmc");
@@ -136,16 +132,11 @@ include_once "local_config.php";
 				echo "</form>";
 			
 			}	
-			?>	
-    			
-    			
+			?>	  			
     			</td>
 			</tr>
 		</table>
-
-		</div>
     </div>
-    <div class="br"></div>
 </div>
 </body>
 </html>

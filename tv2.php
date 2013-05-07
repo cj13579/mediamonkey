@@ -1,8 +1,14 @@
 <?php
 
+if(isset($_GET['prev_direc']))
+{
+	$directory = $_GET['prev_direc'];
+}
+
 if(isset($_POST['directory']))
 {
 	$directory = $_POST['directory'];
+	$prev_direc = $_POST['prev_direc'];
 }
 
 ?>
@@ -40,6 +46,7 @@ if(isset($_POST['directory']))
 						echo "<td>";
 							echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
 							echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
+							echo "<input type=\"hidden\" name=\"prev_direc\" value=\"TV2\">";
 							echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
 							echo "</form>";
 						echo "</td>";
@@ -59,6 +66,12 @@ if(isset($_POST['directory']))
 				$scanned_dir = array_diff(scandir($directory), array('..', '.','.AppleDesktop','.AppleDouble','.AppleDBFile','.AppleDB'));	
 				echo "<table>";	
 				echo "<tr>";
+				if(isset($prev_direc))
+				{
+					echo "<td><p><b>Back to: <a href=\"tv2.php?prev_direc=$prev_direc\">$prev_direc</a></td><td></td><td></td>";
+				}
+				echo "</tr>";
+				echo "<tr>";
 				echo "<td><p><b>Directory/File Name</td><td></td><td></td>";
 				echo "</tr>";
 				foreach ($scanned_dir as $value) 
@@ -71,6 +84,7 @@ if(isset($_POST['directory']))
 						echo "<td>";
 							echo "<form method=\"post\" action=\"".$_SERVER['PHP_SELF']."\" />";
 							echo "<input type=\"hidden\" name=\"directory\" value=\"".$a."\">";
+							echo "<input type=\"hidden\" name=\"prev_direc\" value=\"".$directory."\">";
 							echo "<input type=\"submit\" name=\"submit\" value=\"$value\">";
 							echo "</form>";
 						echo "</td>";

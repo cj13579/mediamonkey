@@ -14,7 +14,7 @@ include_once "local_config.php";
 			<table>
 			<tr>
     		<td valign="top">
- 			<h3>Blog</h3>
+			<h3>Blog</h3>
  			<p> <strong>22/03/2013 - </strong>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:
 			
 			<p><b>look and feel</b>
