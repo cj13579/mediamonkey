@@ -15,8 +15,18 @@ include_once "local_config.php";
 			<tr>
     		<td valign="top">
 			<h3>Blog</h3>
+			<p> <strong>09/10/2013 - </strong>Version 0.3 of MediaMonkey is done. The changes in this version are all feature additons which I hope you will find useful.
+			<p><b>Updated homepage</b>
+			<br />In addition to the MediaMonkey blog the latest 5 TV episodes and Films in library are now disaplyed on the home page. The stats from 0.2 showed that the majority of people were down loading latest episodes of things. As such, to speed up access to this content I thought it best to stick it on page one.
+			<p><b>film/tv Requests</b>
+			<br />Another content update, you can now request TV Shows, individual TV episodes or Movies directly from within the app. When you request a show a link is provided so that you can track its status.
+			<p><b>bug/feature requests</b>
+			<br />Similar to the above but this is for requesting more features for MediaMonkey as I am keen to get some ideas for additions. You can also use this feature to report stuff that doesn't work.
+			<p>
+			<p>-------------------------------------------------------
+			<p>
+			<p> 			
  			<p> <strong>22/03/2013 - </strong>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:
-			
 			<p><b>look and feel</b>
 			<br />The main change that you will notice is with the "tv","tv2" and "films" links. They were the only sections didn't have the same look and feel as the rest of the site. This has now been sorted so the site should look and feel consistent throughout.
 			<p><b>speedy gonzalez</b>

@@ -16,4 +16,7 @@ $uri = "downloads";
 
 $tv_locs = "TV,TV2";
 
+$mantis_username = "mmonkey";
+$mantis_password = "Orion123";
+
 ?>
