@@ -6,7 +6,7 @@ include_once "local_config.php";
 $username = getenv("REMOTE_USER"); 
 $download = $_POST["download"];
 $dl = $_POST["dl"];
-$stream = $_POST["stream"];
+//$stream = $_POST["stream"];
 $med_type = $_POST["type"];
 $id = $_POST["id"];
 $date = date('Y-m-d H:i:s');
@@ -20,7 +20,7 @@ $uri = "";
 if(is_null($file))
 {
 	$type = "library";
-	$file = "$id";
+	$file = "$file";
 }
 else
 {
@@ -56,6 +56,8 @@ if (!mysql_query($sql,$con))
     }
 }
 
+
+/*
 if ($stream == "1")
 {
 
@@ -127,5 +129,5 @@ echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri$downl
 }
 
 }
-
+*/
 ?>

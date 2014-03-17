@@ -10,12 +10,24 @@ include_once "local_config.php";
 <body>
 <div id="container">
     <div id="content">
-		<div id="home" name="home1" >
+		<!-- <div id="home" name="home1" > 
 			<table>
 			<tr>
-    		<td valign="top">
+    		<td valign="top"> -->
 			<h3>Blog</h3>
-			<p> <strong>09/10/2013 - </strong>Version 0.3 of MediaMonkey is done. The changes in this version are all feature additons which I hope you will find useful.
+			<p> <strong>March 2014 - </strong>Version 0.4 of MediaMonkey is here!
+			<p><b>Libraries</b>
+			<br />Both TV Show and Movie libraries allow you to browse and download stuff. Descriptions as well as other information is available for all movies, TV shows and even idividual episodes!
+			<br />Something that I have changed about both the TV and Movies libraries is the information that they show. I noticed that outside of my house the images took a while to load which didn't make for a great experience.
+			<p><b>Streaming</b>
+			<br />I have been collecting stats on people's use of the system and saw that nobody (apart from me... once) used the streaming functionality. To keep the UI clean I have removed this option. If we want it back please submit a feature request.
+			<p><b>TV Search</b>
+			<br />Its been available for Movies for a long time but you can now search for TV Shows. The information displayed for your results is the same as if you were browsing for the libraries.
+			<p>
+			<p>-------------------------------------------------------
+			<p>
+			<p> 
+			<p> <strong>October 2013 - </strong>Version 0.3 of MediaMonkey is done. The changes in this version are all feature additons which I hope you will find useful.
 			<p><b>Updated homepage</b>
 			<br />In addition to the MediaMonkey blog the latest 5 TV episodes and Films in library are now disaplyed on the home page. The stats from 0.2 showed that the majority of people were down loading latest episodes of things. As such, to speed up access to this content I thought it best to stick it on page one.
 			<p><b>film/tv Requests</b>
@@ -26,7 +38,7 @@ include_once "local_config.php";
 			<p>-------------------------------------------------------
 			<p>
 			<p> 			
- 			<p> <strong>22/03/2013 - </strong>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:
+ 			<p> <strong>March 2013 - </strong>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:
 			<p><b>look and feel</b>
 			<br />The main change that you will notice is with the "tv","tv2" and "films" links. They were the only sections didn't have the same look and feel as the rest of the site. This has now been sorted so the site should look and feel consistent throughout.
 			<p><b>speedy gonzalez</b>
@@ -40,20 +52,20 @@ include_once "local_config.php";
 			<p>-------------------------------------------------------
 			<p>
 			<p>
-			<p><strong>05/02/2013 - </strong>Welcome to Media Monkey. I hope you find it an improvement on the previous interface to my movies and TV. At the moment only the Movies section is fully working with the new look and while there is a "library" view available for TV you can't download anything through it yet. Don't fear though, you can us the "tv" and "tv2" links as of old to get all available TV episodes.
+			<p><strong>February 2013 - </strong>Welcome to Media Monkey. I hope you find it an improvement on the previous interface to my movies and TV. At the moment only the Movies section is fully working with the new look and while there is a "library" view available for TV you can't download anything through it yet. Don't fear though, you can us the "tv" and "tv2" links as of old to get all available TV episodes.
 			
 			<p>I don't know whether or not any of you do but for quite a few of the TV episodes and a few of the movies you can stream them straight from your browser (Chrome works the best). The files need to be MP4. If you want to do that with any of the films then you will need to use the "films" menu which will take you to the familiar boring site. The library mode will force you to download the file.
 			
 			<p>Although I have tested downloading a few movies there is a chance that some stuff doesn't work. So, please let me know if anything is broken and I'll do my best to get it sorted for you ASAP.
 			<p> Ta, Chris.   			
     			
-    			
+    	<!--		
     			
     		</td>
   			</tr>
 			</table>	
 
-		</div>
+		 </div> -->
     </div>
     <div class="br"></div>
 </div>

@@ -160,14 +160,88 @@ function _get_hash($file_path)
 		echo "</br>";
 		echo "<strong>Channel: </strong> $channel </br>";
 		echo "</br>";
-		echo "<strong>Download : </strong> Coming Soon!</br>";
-		echo "</br>";
 		echo "</p></td>";
 		echo "</tr>";
 		
 	}
 	?>
 	</table>
+	<p>
+	<p>
+<?php
+
+$id = $_GET['id'];
+if (isset($id))
+{
+mysql_select_db("xbmc_videos75", $con);
+$sql = "SELECT * FROM seasons WHERE idShow = $id AND season >= 1";
+$result = mysql_query($sql) or die(mysql_error());
+
+}
+
+
+?>	
+
+
+<form method="post" action="downloads.php" />
+
+<?
+while($row = mysql_fetch_array($result))
+{
+  $season=$row['season'];
+  //echo "<tr>";
+  //echo "<td><p><b>Season $season</td>";
+  //echo "</tr>";
+  echo "<p><b>Season $season";
+  $sql = "SELECT *  FROM episodeview WHERE c12 = $season AND idShow = $id";
+  $result1 = mysql_query($sql) or die(mysql_error());
+  echo "<table>";
+  echo "<tr>";
+  echo "<td align=center><p><b>Episode</td>";
+  echo "<td align=center><p><b>Title</td>";
+  echo "<td align=center><p><b>Desription</td>";
+  echo "</tr>";
+  
+  while($row1 = mysql_fetch_array($result1))
+  {
+  $show = $row1['strTitle'];
+  $episode=$row1['c13'];
+  $eptitle=$row1['c00'];
+  $epdesc=$row1['c01'];
+  $file = "$show.$season.$episode";
+  $file1=$row1['c18'];
+  $x = "smb://Q2SERVER";
+  $y = ".";
+  $str2 = str_replace($x, $y, $file1);
+  $ext = substr($str3, -3);
+  
+  echo "<tr>";
+  echo "<td><p>$episode</td>";
+  echo "<td><p>$eptitle</td>";
+  echo "<td><p>$epdesc</td>";
+  echo "<td>";
+  echo "<form method=\"post\" action=\"downloads.php\" />";
+  echo "<input type=\"hidden\" name=\"dl\" value=\"1\">";
+  echo "<input type=\"hidden\" name=\"download\" value=\"".$str2."\">";
+  echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
+  echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";  
+  echo "<input type=\"hidden\" name=\"type\" value=\"tvdl\">";
+  echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
+  echo "</form>";
+  echo "</td>";
+
+  echo "</tr>";
+  }
+  echo "</table>";
+
+}
+
+
+?>
+
+</form>
+</table>	
+
 			<br />
 		</div>
     </div>

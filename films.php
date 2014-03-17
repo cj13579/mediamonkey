@@ -23,7 +23,7 @@ if(isset($_POST['directory']))
 <div id="container">
     <div id="content">
 		<div id="home" name="home1" >
-			<p>
+			
 			<?php
 			
 			if(!isset($directory))
@@ -32,7 +32,7 @@ if(isset($_POST['directory']))
 				$scanned_dir = array_diff(scandir($directory), array('..', '.','.AppleDesktop','.AppleDouble','.AppleDBFile','.AppleDB'));		
 				echo "<table>";
 				echo "<tr>";
-				echo "<td><p><b>Directory/File Name</td><td></td><td></td>";
+				echo "<td><b>Directory/File Name</td><td></td><td></td>";
 				echo "</tr>";
 				foreach ($scanned_dir as $value) 
 				{
@@ -66,11 +66,11 @@ if(isset($_POST['directory']))
 				echo "<tr>";
 				if(isset($prev_direc))
 				{
-					echo "<td><p><b>Back to: <a href=\"films.php?prev_direc=$prev_direc\">$prev_direc</a></td><td></td><td></td>";
+					echo "<td><b>Back to: <a href=\"films.php?prev_direc=$prev_direc\">$prev_direc</a></td><td></td><td></td>";
 				}
 				echo "</tr>";
 				echo "<tr>";
-				echo "<td><p><b>Directory/File Name</td><td></td><td></td>";
+				echo "<td><b>Directory/File Name</td><td></td><td></td>";
 				echo "</tr>";
 				foreach ($scanned_dir as $value) 
 				{
@@ -97,10 +97,10 @@ if(isset($_POST['directory']))
 							echo "<table style=\"vertical-align:bottom\">";
 							echo "<tr>";
 							echo "<td valign=\"bottom\">";
-								echo "<p>$value";
+								echo "$value";
 							echo "</td>";
 							echo "<td>";
-								echo "<p>";
+								//echo "<p>";
 								echo "<form method=\"post\" action=\"downloads.php\" />";
 								echo "<input type=\"hidden\" name=\"dl\" value=\"1\">";
 								echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
@@ -113,7 +113,7 @@ if(isset($_POST['directory']))
 							if (preg_match("/\.(mp4)/",$value))
 							{
 								echo "<td>";
-									echo "<p>";
+									//echo "<p>";
 									echo "<form method=\"post\" action=\"downloads.php\" />";
 									echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
 									echo "<input type=\"hidden\" name=\"stream\" value=\"1\">";
@@ -126,7 +126,7 @@ if(isset($_POST['directory']))
 							if (preg_match("/\.(mp4)/",$value))
 							{
 								echo "<td>";
-									echo "<p>";
+									//echo "<p>";
 									echo "<form method=\"post\" action=\"downloads.php\" target=\"_blank\"/>";
 									echo "<input type=\"hidden\" name=\"download\" value=\"".$b."\">";
 									echo "<input type=\"hidden\" name=\"stream\" value=\"2\">";

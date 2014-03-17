@@ -105,7 +105,9 @@ elseif ($pagenum > $last)
 
 	
 $max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
-$sql = "SELECT tvshow.idShow, tvshow.c00, art.media_type, art.media_id, art.type, art.url FROM art, tvshow WHERE art.media_type LIKE 'tvshow' AND tvshow.idShow = art.media_id AND art.type LIKE 'thumb' ORDER BY tvshow.c00 $max";
+//$sql = "SELECT tvshow.idShow, tvshow.c00, art.media_type, art.media_id, art.type, art.url FROM art, tvshow WHERE art.media_type LIKE 'tvshow' AND tvshow.idShow = art.media_id AND art.type LIKE 'thumb' ORDER BY tvshow.c00 $max";
+
+$sql = "SELECT * FROM tvshowview ORDER BY tvshowview.c00 $max";
 
 $result = mysql_query($sql) or die(mysql_error());
 $rows = mysql_num_rows($result);
@@ -125,28 +127,50 @@ $rows = mysql_num_rows($result);
 		<div id="home" name="home1" >
 		<table>
 		<tr>
+		<td><p><b>Title </td>
+		<td align=center><p><b> IMDB Rating </td>
+		<td align=center><p><b> Channel </td>
+		<td align=center><p><b> Seasons </td>
+		<td align=center><p><b> Episodes </td>
+		<td align=center><p><b></td>
+		</tr>
+		<tr>
 <?php
 
-$per_row=6;
+$per_row=1;
 $split=0;
 	
 	while($row = mysql_fetch_array($result))
 	{
 		$id = $row['idShow'];
 		$title = $row['c00'];
-		$src = $row['url'];
+		//$src = $row['url'];
 		
-		$path = _get_hash($src);
-		$x = substr($path, 0, 1);
-		$array = array("$x", "$path");
-		$path = implode("/",$array);	
+		$score = floatval($row['c04']);
+		$chan = $row['c14'];
+		$seasons = $row['totalSeasons'];
+		$episodes = $row['totalCount'];
+		
+		
+		//$path = _get_hash($src);
+		//$x = substr($path, 0, 1);
+		//$array = array("$x", "$path");
+		//$path = implode("/",$array);
+
+		echo "<td><p>$title</td>";
+		echo "<td align=center><p>$score</td>";
+		echo "<td><p>$chan</td>";
+		echo "<td align=center><p>$seasons</td>";
+		echo "<td align=center><p>$episodes</td>";
 		
 		echo "<td>";
-		echo "<a href='showdetails.php?id=$id'><img src='./Thumbnails/$path.jpg' alt='$title' width='100' height='150' /></a>";
+		//echo "<a href='showdetails.php?id=$id'><img src='./Thumbnails/$path.jpg' alt='$title' width='100' height='150' /></a>";
 		
-		/*echo "<form action='{$_SERVER['PHP_SELF']}' method='get'>";
-		echo "<input name=\"$id\" type=\"image\" src=\"$src\" width=\"100\" height=\"150\" >";
-		echo "</form>";*/
+		echo "<form action='showdetails.php' method='get'>";
+		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
+		echo "<input type=\"submit\" name=\"submit\" value=\"Details\">";
+		echo "</form>";
+		
 		echo "</td>";
 		
 		$split++;   

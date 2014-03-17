@@ -67,14 +67,14 @@ include_once "local_config.php";
 					echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
 					echo "<input type=\"hidden\" name=\"type\" value=\"tvdl\">";
 					echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
-					if (preg_match("/\.(mp4)/",$file))
+					/*if (preg_match("/\.(mp4)/",$file))
 					{
 						echo "<input type=\"hidden\" name=\"download\" value=\"".$str3."\">";
 						echo "<input type=\"hidden\" name=\"stream\" value=\"3\">";
 						echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
 						echo "<input type=\"hidden\" name=\"type\" value=\"tvst2\">";
 						echo "<input type=\"submit\" name=\"submit\" value=\"Stream\">";
-					}
+					} */
 					echo "</form>";
 					}
 				}
@@ -121,14 +121,14 @@ include_once "local_config.php";
 				echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
 				echo "<input type=\"hidden\" name=\"type\" value=\"movdl\">";
 				echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
-				if (preg_match("/\.(mp4)/",$file))
+				/*if (preg_match("/\.(mp4)/",$file))
 				{
 					echo "<input type=\"hidden\" name=\"download\" value=\"".$str3."\">";
 					echo "<input type=\"hidden\" name=\"stream\" value=\"2\">";
 					echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
 					echo "<input type=\"hidden\" name=\"type\" value=\"movstr2\">";
 					echo "<input type=\"submit\" name=\"submit\" value=\"Stream\">";
-				}
+				}*/
 				echo "</form>";
 			
 			}	
