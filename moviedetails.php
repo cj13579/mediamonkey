@@ -166,7 +166,6 @@ $result = mysql_query($sql) or die(mysql_error());
 		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";  
 		echo "<input type=\"hidden\" name=\"type\" value=\"movdl\">";
 		echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
-		echo "</form>";
 		echo "</br>";
 		echo "</br>";
 		echo "</tr>";
