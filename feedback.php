@@ -91,19 +91,25 @@ $userlast = $_SESSION['userlast'];
 		if (!isset($_POST["submit"]))
   		{
   		?>
-  		<div class="alert alert-default">Please use the form below to submit your feedback</div>
+  		<p>Please use the form below to submit your feedback</p>
 		<form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 			<input type="text" class="form-control" placeholder="Subject" name="subject">
 			<br />
+			<div class="alert alert-info"><b>Note:</b> HTML syntax is permitted.</div>
 			<textarea class="form-control" rows="3" name="message" placeholder="Message"></textarea>
 		<br />
 		<button type="submit" name="submit" class="btn btn-default">Submit</button>
+		<button type="submit" name="cancel" class="btn btn-default">Cancel</button>
 		</form>
   		<?php 
   		}
 		else
   		// the user has submitted the form
   		{
+  		
+  		if (isset($_POST["cancel"])){	header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+	exit;}
+  		
   		// Check if the "from" input field is filled out
   		if (isset($_POST["message"]))
     		{
@@ -120,9 +126,30 @@ $userlast = $_SESSION['userlast'];
     		$to = "cjb.blake@gmail.com"; // sender
     		//$from = $_POST["from"]; // sender
     		$subject = $_POST["subject"];
-    		$message = $_POST["message"];
+    		$text = $_POST["message"];
+    		$message = "
+    		<html>
+    		<head>
+    			    <meta charset=\"utf-8\">
+    				<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+    				<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    				<meta name=\"description\" content=\"\">
+    				<meta name=\"author\" content=\"\">
+    		   		<link href=\"http://$_SERVER[SERVER_NAME]/$uri/css/bootstrap.min.css\" rel=\"stylesheet\">
+    				<link href=\"http://$_SERVER[SERVER_NAME]/$uri/css/dashboard.css\" rel=\"stylesheet\">
+    		</head>
+  			<body>
+  			
+    		<div class=\"container\">
+    			<p>$text</p>
+  			</div>
+  				
+  			</body>
+  			</html>
+    		
+    		" ;
     		// message lines should not exceed 70 characters (PHP rule), so wrap it
-    		$message = wordwrap($message, 70);
+    		//$message = wordwrap($message, 70);
     		// send mail
     		if(@mail($to,$subject,$message,$headers))
 				{
