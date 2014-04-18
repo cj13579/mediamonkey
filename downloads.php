@@ -7,13 +7,10 @@ if(!isset($_SESSION["user"]))
 	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 	exit;
 }
-?>
-<?php
 
-include_once "local_config.php";
 
 //Set variables up
-$username = getenv("REMOTE_USER"); 
+$username = $_SESSION["user"]; 
 if(isset($_POST['download'])){$download = $_POST["download"];}
 if(isset($_POST['dl'])){$dl = $_POST["dl"];}
 if(isset($_POST['stream'])){$stream = $_POST["stream"];}
@@ -24,8 +21,6 @@ if(isset($_POST['file'])){$file = $_POST['file'];}
 $host = $_SERVER['SERVER_NAME'];
 $port = $_SERVER['SERVER_PORT'];
 
-# CUSTOM VARIBALE
-$uri = "downloads";
 
 if(is_null($file))
 {
