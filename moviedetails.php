@@ -258,10 +258,4 @@ $result = mysql_query($sql) or die(mysql_error());
     <script src="./js/docs.min.js"></script>
   </body>
 </html>
-<<<<<<< HEAD
 
-=======
-<?php  
-mysql_close($con);
-?>
->>>>>>> 42d71d6866c3d7183dea5b461981e68139fbfec3
