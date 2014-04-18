@@ -25,7 +25,7 @@ $host = $_SERVER['SERVER_NAME'];
 $port = $_SERVER['SERVER_PORT'];
 
 # CUSTOM VARIBALE
-$uri = "";
+$uri = "downloads";
 
 if(is_null($file))
 {
@@ -43,6 +43,7 @@ if (isset($dl))
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
 $sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
+
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
@@ -74,7 +75,9 @@ if ($stream == "1")
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
+
 $sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
+
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
@@ -98,7 +101,9 @@ if ($stream == "2" )
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
+
 $sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
+
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
