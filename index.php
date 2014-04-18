@@ -1,8 +1,9 @@
 <?php 
 session_start();
+include 'local_config.php';
 if(!isset($_SESSION["user"]))
 {
-	header("Location: http://$_SERVER[SERVER_NAME]/mm/login.php");
+	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 	exit;
 }
 ?>
