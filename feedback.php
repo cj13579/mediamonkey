@@ -92,10 +92,10 @@ $userlast = $_SESSION['userlast'];
   		{
   		?>
   		<p>Please use the form below to submit your feedback</p>
+  		<div class="alert alert-info">HTML syntax is permitted.</div>
 		<form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 			<input type="text" class="form-control" placeholder="Subject" name="subject">
 			<br />
-			<div class="alert alert-info"><b>Note:</b> HTML syntax is permitted.</div>
 			<textarea class="form-control" rows="3" name="message" placeholder="Message"></textarea>
 		<br />
 		<button type="submit" name="submit" class="btn btn-default">Submit</button>
