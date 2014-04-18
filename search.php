@@ -89,14 +89,7 @@ if(isset($_POST['terms']))
     <input type="submit" name="search" value="Search">    
     </form>
     <p><p><p><p><p><p><p>
-	<table border=0>
-	<tr>
-	<td align=center><p><b>Title </td>
-	<td align=center><p><b> IMDB Rating </td>
-	<td align=center><p><b> Description </td>
-	<td align=center><p><b> Release Year </td>
-	<td align=center><p><b></td>
-	</tr>
+	<table>
 	<tr>
 <?php
 
@@ -143,57 +136,14 @@ elseif ($pagenum > $last)
 
 	
 $max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
-//$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'poster' AND movie.c00 LIKE '%$terms%' ORDER BY movie.c00 $max";
-
-$sql = "SELECT * FROM movieview WHERE c00 LIKE '%$terms%' ORDER BY movieview.c00  $max";
+$sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'poster' AND movie.c00 LIKE '%$terms%' ORDER BY movie.c00 $max";
 
 $result = mysql_query($sql) or die(mysql_error());
 $rows = mysql_num_rows($result);
 
-$per_row=1;
-$split=0;
-	
-	while($row = mysql_fetch_array($result))
-	{
-		$id = $row['idMovie'];
-		$title = $row['c00'];
-		$score = floatval($row['c05']);
-		$rating = $row['c12'];
-		$src = $row['url'];
-		$desc = $row['c03'];
-		$year = $row['c07'];
-		
-		//echo "<td>";
-		echo "<td><p>$title</td>";
-		echo "<td align=center><p>$score</td>";
-		//echo "<td>";
-		//$path = _get_hash($src);
-		//$x = substr($path, 0, 1);
-		//$array = array("$x", "$path");
-		//$path = implode("/",$array);	
-		//echo "<a href='moviedetails.php?id=$id'>Details</a>";
-		
-		echo "<td><p>$desc</td>";
-		echo "<td align=center><p>$year</td>";
-		echo "<td valign=center>";
-		echo "<form action='moviedetails.php' method='get'>";
-		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
-		//echo "<input type=\"submit\" name=\"submit\" value=\"".$title."\">";
-		echo "<input type=\"submit\" name=\"submit\" value=\"Details\">";
-		echo "</form>";
-		echo "</td>";
-		
-		$split++;   
-		if ($split%$per_row==0){
-			echo '</tr><tr>';
-		}
-	}
-
-/*
-
 $per_row=6;
 $split=0;
-
+	
 	while($row = mysql_fetch_array($result))
 	{
 		$id = $row['idMovie'];
@@ -207,9 +157,9 @@ $split=0;
 		$path = implode("/",$array);	
 		echo "<a href='moviedetails.php?id=$id'><img src='./Thumbnails/$path.jpg' alt='$title' width='100' height='150' /></a>";
 		
-		//echo "<form action='{$_SERVER['PHP_SELF']}' method='get'>";
-		//echo "<input name=\"$id\" type=\"image\" src=\"$src\" width=\"100\" height=\"150\" >";
-		//echo "</form>";
+		/*echo "<form action='{$_SERVER['PHP_SELF']}' method='get'>";
+		echo "<input name=\"$id\" type=\"image\" src=\"$src\" width=\"100\" height=\"150\" >";
+		echo "</form>";*/
 		echo "</td>";
 		
 		$split++;   
@@ -217,9 +167,8 @@ $split=0;
 			echo '</tr><tr>';
 		}
 	}
-*/
-}
 
+}
 ?>
 </table>
 	<div align="center">

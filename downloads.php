@@ -1,16 +1,25 @@
+<?php 
+session_start();
+if(!isset($_SESSION["user"]))
+{
+	$_SESSION['tryme'] = 1;
+	header("Location: http://$_SERVER[SERVER_NAME]/mm/login.php");
+	exit;
+}
+?>
 <?php
 
 include_once "local_config.php";
 
 //Set variables up
 $username = getenv("REMOTE_USER"); 
-$download = $_POST["download"];
-$dl = $_POST["dl"];
-//$stream = $_POST["stream"];
-$med_type = $_POST["type"];
-$id = $_POST["id"];
+if(isset($_POST['download'])){$download = $_POST["download"];}
+if(isset($_POST['dl'])){$dl = $_POST["dl"];}
+if(isset($_POST['stream'])){$stream = $_POST["stream"];}
+if(isset($_POST['type'])){$med_type = $_POST["type"];}
+if(isset($_POST['id'])){$id = $_POST["id"];}
 $date = date('Y-m-d H:i:s');
-$file = $_POST['file'];
+if(isset($_POST['file'])){$file = $_POST['file'];}
 $host = $_SERVER['SERVER_NAME'];
 $port = $_SERVER['SERVER_PORT'];
 
@@ -20,7 +29,7 @@ $uri = "";
 if(is_null($file))
 {
 	$type = "library";
-	$file = "$file";
+	$file = "$id";
 }
 else
 {
@@ -56,8 +65,9 @@ if (!mysql_query($sql,$con))
     }
 }
 
+if(isset($stream))
+{
 
-/*
 if ($stream == "1")
 {
 
@@ -129,5 +139,7 @@ echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri$downl
 }
 
 }
-*/
+
+}
+
 ?>

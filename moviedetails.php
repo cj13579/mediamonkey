@@ -1,3 +1,40 @@
+<?php 
+session_start();
+if(!isset($_SESSION["user"]))
+{
+	$_SESSION['tryme'] = 1;
+	header("Location: http://$_SERVER[SERVER_NAME]/mm/login.php");
+	exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Media Monkey</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
 <?php
 function _get_hash($file_path)
 {
@@ -105,19 +142,46 @@ $result = mysql_query($sql) or die(mysql_error());
 
 ?>
 
-<html>
-<head>
- <title>MediaMonkey Web Interface : Movies</title>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
- <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-<div id="container">
-    <div id="content">
-		<div id="home" name="home1" >
-	<table>
+  <body>
+
+    <!-- Header -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Media Monkey</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="moviemonkey.php">Movies</a></li>
+            <li><a href="tvmonkey.php">TV</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="blog.php">Blog</a></li>
+            <li><a href="logout.php">Logout</a></li>
+          </ul>
+          
+          <!-- Search -->
+          <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form> -->
+          <!-- End Search -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <div class="container-fluid">
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+	<form role="form" method="post" action="downloads.php" />
+	<table class="table">
 	<tr></tr>
-	<form method="post" action="downloads.php" />
 <?php
 
 	while($row = mysql_fetch_array($result))
@@ -133,6 +197,15 @@ $result = mysql_query($sql) or die(mysql_error());
 		$src = $row['url'];
 		$file_path = $row['c22'];
 		$file = $row['strFilename'];
+		
+		$needle = "stack";
+		$pos = strpos($file,$needle);
+		
+		if ($pos !== false) {
+			
+			$file = str_replace("stack://smb://Q2SERVER/Films/","","$file");
+		
+		}
 
 		$serv = "192.168.0.4/test";
 		$str = $row['c22'];
@@ -148,25 +221,21 @@ $result = mysql_query($sql) or die(mysql_error());
 		$x = substr($path, 0, 1);
 		$array = array("$x", "$path");
 		$path = implode("/",$array);	
-		echo "<img src='./Thumbnails/$path.jpg' alt='$title' width='150' height='200'/>";
+		echo "<img src=\"./Thumbnails/$path.jpg\" alt=\"$title\" height=\"180\" width=\"133\" />";
 		echo "</td>";
 		echo "<td><p>";
-		echo "<strong>Title: </strong>$title </br>";
-		echo "</br>";
+		echo "<table class='table'><tr>";
+		echo "<td><strong>Title: </strong>$title</td><td><strong>IMDB Rating: 	</strong> $rate </td><td><strong>Director: </strong> $director </td>";
+		echo "</tr></table>";
 		echo "<strong>Description: </strong> $desc </br>";
 		echo "</br>";
-		echo "<strong>IMDB Rating: </strong> $rate </br>";
-		echo "</br>";
-		echo "<strong>Director: </strong> $director </br>";
-		echo "</br>";
-		echo "<strong>Download: </p></strong>"; 
+		echo "<strong>Download: </strong> ";
 		echo "<input type=\"hidden\" name=\"dl\" value=\"1\">";
 		echo "<input type=\"hidden\" name=\"download\" value=\"".$str3."\">";
-		echo "<input type=\"hidden\" name=\"file\" value=\"".$title."\">";
-		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";  
 		echo "<input type=\"hidden\" name=\"type\" value=\"movdl\">";
+		echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
+		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
 		echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
-		echo "</form>";
 		echo "</br>";
 		echo "</br>";
 		echo "</tr>";
@@ -175,13 +244,17 @@ $result = mysql_query($sql) or die(mysql_error());
 	?>
 	</form>
 	</table>
-			<br />
-		</div>
     </div>
-    <div class="br"></div>
-</div>
-</body>
+    <!-- End Body -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/docs.min.js"></script>
+  </body>
 </html>
-<?php  
-mysql_close($con);
-?>
+

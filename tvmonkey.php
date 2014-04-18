@@ -1,227 +1,238 @@
+<?php 
+session_start();
+if(!isset($_SESSION["user"]))
+{
+	$_SESSION['tryme'] = 1;
+	header("Location: http://$_SERVER[SERVER_NAME]/mm/login.php");
+	exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Media Monkey</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Media Monkey</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="moviemonkey.php">Movies</a></li>
+            <li><a href="tvmonkey.php">TV</a></li>
+            <li><a href="profile.php">Profile</a></li>
+            <li><a href="blog.php">Blog</a></li>
+            <li><a href="logout.php">Logout</a></li>
+          </ul>
+          
+          <!-- Search -->
+          <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form> -->
+          <!-- End Search -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <div class="container-fluid">
+		<!-- Main jumbotron for a primary marketing message or call to action -->
 <?php
-
-function _get_hash($file_path)
-{
-   $chars = strtolower($file_path);
-   $crc = 0xffffffff;
-
-   for ($ptr = 0; $ptr < strlen($chars); $ptr++)
-   {
-      $chr = ord($chars[$ptr]);
-      $crc ^= $chr << 24;
-
-      for ((int) $i = 0; $i < 8; $i++)
-      {
-         if ($crc & 0x80000000)
-         {
-            $crc = ($crc << 1) ^ 0x04C11DB7;
-         }
-         else
-         {
-            $crc <<= 1;
-         }
-      }
-   }
-
-   // Syst? d'exploitation en 64 bits ?
-   if (strpos(php_uname('m'), '_64') !== false)
-   {
-      //Formatting the output in a 8 character hex
-      if ($crc>=0)
-      {
-         $hash = sprintf("%16s",sprintf("%x",sprintf("%u",$crc)));
-      }
-      else
-      {
-         $source = sprintf('%b', $crc);
-         $hash = "";
-         while ($source <> "")
-         {
-            $digit = substr($source, -4);
-            $hash = dechex(bindec($digit)) . $hash;
-            $source = substr($source, 0, -4);
-         }
-      }
-      $hash = substr($hash, 8);
-   }
-   else
-   {
-      //Formatting the output in a 8 character hex
-      if ($crc>=0)
-      {
-         $hash = sprintf("%08s",sprintf("%x",sprintf("%u",$crc)));
-      }
-      else
-      {
-         $source = sprintf('%b', $crc);
-         $hash = "";
-         while ($source <> "")
-         {
-            $digit = substr($source, -4);
-            $hash = dechex(bindec($digit)) . $hash;
-            $source = substr($source, 0, -4);
-         }
-      }
-   }
-
-   return $hash;
-}
-
-$con = mysql_connect("localhost","xbmc","xbmc");
-if (!$con)
-{
-	die('Could not connect: ' . mysql_error());
-}
-
-//set limit for number or results
-$rc=30;
-
-
-mysql_select_db("xbmc_videos67", $con);
-$sql = "SELECT tvshow.idShow, tvshow.c00, art.media_type, art.media_id, art.type, art.url FROM art, tvshow WHERE art.media_type LIKE 'tvshow' AND tvshow.idShow = art.media_id AND art.type LIKE 'thumb' ORDER BY tvshow.c00";
-
-$result = mysql_query($sql) or die(mysql_error());
-//count results
-$rows = mysql_num_rows($result);
-
-//calculate last page
-$last = ceil($rows/$rc);
-
-//check if page number is set
-$pagenum = $_GET['pagenum'];
-
-if (!(isset($pagenum))) 
-{ 
-	$pagenum = 1; 
-}
-if ($pagenum < 1) 
-{ 
-	$pagenum = 1; 
-} 
-elseif ($pagenum > $last) 
-{ 
-	$pagenum = $last; 
-} 
-
+    $con = mysql_connect("localhost","xbmc","xbmc");
+    if (!$con)
+    {
+        die('Could not connect: ' . mysql_error());
+    }
+    
+    //set limit for number or results
+    $rc=30;
+    
+    
+    mysql_select_db("xbmc_videos75", $con);
+    $sql = "SELECT * from tvshowview ";
+    
+    $result = mysql_query($sql) or die(mysql_error());
+    //count results
+    $rows = mysql_num_rows($result);
+    
+    //calculate last page
+    $last = ceil($rows/$rc);
+    
+    //check if page number is set
+    $pagenum = $_GET['pagenum'];
+    
+    if (!(isset($pagenum)))
+    {
+        $pagenum = 1;
+    }
+    if ($pagenum < 1)
+    {
+        $pagenum = 1;
+    }
+    elseif ($pagenum > $last)
+    {
+        $pagenum = $last;
+    }
+    
 	
-$max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
-//$sql = "SELECT tvshow.idShow, tvshow.c00, art.media_type, art.media_id, art.type, art.url FROM art, tvshow WHERE art.media_type LIKE 'tvshow' AND tvshow.idShow = art.media_id AND art.type LIKE 'thumb' ORDER BY tvshow.c00 $max";
-
-$sql = "SELECT * FROM tvshowview ORDER BY tvshowview.c00 $max";
-
-$result = mysql_query($sql) or die(mysql_error());
-$rows = mysql_num_rows($result);
-
+    $max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
+    
+    $sql = "SELECT * FROM tvshowview ORDER BY tvshowview.c00 $max";
+    
+    $result = mysql_query($sql) or die(mysql_error());
+    $rows = mysql_num_rows($result);
 ?>
 
+          <!-- <h2 class="sub-header">Section title</h2> -->
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <!-- <th>#</th> -->
+                  <th>Title</th>
+                  <th>IMDB Rating</th>
+                  <th>Description</th>
+                  <th>Channel</th>
+                  <th>First Aired</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
 
-<html>
-<head>
- <title>TVMonkey Web Interface</title>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
- <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-<div id="container">
-    <div id="content">
-		<div id="home" name="home1" >
-		<table>
-		<tr>
-		<td><p><b>Title </td>
-		<td align=center><p><b> IMDB Rating </td>
-		<td align=center><p><b> Channel </td>
-		<td align=center><p><b> Seasons </td>
-		<td align=center><p><b> Episodes </td>
-		<td align=center><p><b></td>
-		</tr>
-		<tr>
 <?php
-
-$per_row=1;
-$split=0;
+    
+    $per_row=1;
+    $split=0;
 	
 	while($row = mysql_fetch_array($result))
 	{
 		$id = $row['idShow'];
 		$title = $row['c00'];
-		//$src = $row['url'];
-		
 		$score = floatval($row['c04']);
-		$chan = $row['c14'];
-		$seasons = $row['totalSeasons'];
-		$episodes = $row['totalCount'];
+		$channel = $row['c14'];
+		$src = $row['c16'];
+		$desc = $row['c01'];
+		$year = $row['c05'];
 		
-		
+		//echo "<td>";
+		echo "<td><p>$title</td>";
+		echo "<td align=center><p>$score</td>";
+		//echo "<td>";
 		//$path = _get_hash($src);
 		//$x = substr($path, 0, 1);
 		//$array = array("$x", "$path");
 		//$path = implode("/",$array);
-
-		echo "<td><p>$title</td>";
-		echo "<td align=center><p>$score</td>";
-		echo "<td><p>$chan</td>";
-		echo "<td align=center><p>$seasons</td>";
-		echo "<td align=center><p>$episodes</td>";
+		//echo "<a href='moviedetails.php?id=$id'>Details</a>";
 		
-		echo "<td>";
-		//echo "<a href='showdetails.php?id=$id'><img src='./Thumbnails/$path.jpg' alt='$title' width='100' height='150' /></a>";
+		echo "<td><p>$desc</td>";
+		echo "<td><p>$channel</td>";
 		
-		echo "<form action='showdetails.php' method='get'>";
+		echo "<td align=center><p>$year</td>";
+		echo "<td valign=center>";
+		echo "<form role=\"form\" method='get' action='showdetails.php'>";
 		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
-		echo "<input type=\"submit\" name=\"submit\" value=\"Details\">";
+		echo "<input type=\"hidden\" name=\"title\" value=\"".$title."\">";
+		//echo "<input type=\"submit\" name=\"submit\" value=\"".$title."\">";
+		echo "<button type=\"submit\" name=\"submit\" class=\"btn btn-link\">Details</button>";
 		echo "</form>";
-		
 		echo "</td>";
 		
-		$split++;   
+		$split++;
 		if ($split%$per_row==0){
 			echo '</tr><tr>';
 		}
 	}
-	?>
-	</table>
-<?php
 
- // First we check if we are on page one. If we are then we don't need a link to the previous page or the first page so we do nothing. If we aren't then we generate links to the first page, and to the previous page.
-
- if ($pagenum == 1) 
- {
-	echo "<p>--Page $pagenum of $last-- ";
-	$next = $pagenum+1;
-	// This shows the user what page they are on, and the total number of pages
-	echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
-	echo " ";
-	echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
- } 
- elseif ($pagenum == $last) 
- {
-	echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
-	echo " ";
-	$previous = $pagenum-1;
-	echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
-	echo "--Page $pagenum of $last-- </p>";
- } 
-else 
-{
-	$next = $pagenum+1;
-	echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
-	echo " ";
-	$previous = $pagenum-1;
-	echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
-	// This shows the user what page they are on, and the total number of pages
-	echo "--Page $pagenum of $last-- ";
-	echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
-	echo " ";
-	echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
- } 
-
- ?> 
-		</div>
-    </div>
-    <div class="br"></div>
-</div>
-</body>
-</html>
-<?php  
-mysql_close($con);
+    
 ?>
+              </tbody>
+            </table>
+            
+		<div class="container-fluid" align="center">
+<?php
+    
+    // First we check if we are on page one. If we are then we don't need a link to the previous page or the first page so we do nothing. If we aren't then we generate links to the first page, and to the previous page.
+    
+    if ($pagenum == 1)
+    {
+        echo "<p>--Page $pagenum of $last-- ";
+        $next = $pagenum+1;
+        // This shows the user what page they are on, and the total number of pages
+        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
+        echo " ";
+        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
+    }
+    elseif ($pagenum == $last)
+    {
+        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
+        echo " ";
+        $previous = $pagenum-1;
+        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
+        echo "--Page $pagenum of $last-- </p>";
+    }
+    else
+    {
+        $next = $pagenum+1;
+        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
+        echo " ";
+        $previous = $pagenum-1;
+        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
+        // This shows the user what page they are on, and the total number of pages
+        echo "--Page $pagenum of $last-- ";
+        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
+        echo " ";
+        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
+    } 
+    
+    ?>
+    	</div>
+    	
+    </div>
+    <!-- End Body -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/docs.min.js"></script>
+  </body>
+</html>
+
