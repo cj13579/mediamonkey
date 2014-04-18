@@ -42,14 +42,14 @@ include 'local_config.php';
 	if (pam_auth($username, $password, &$error))
 	{
     	$_SESSION["user"] = $username ;
-    	header("Location: http://$_SERVER[SERVER_NAME]/mm/index.php");
+    	header("Location: http://$_SERVER[SERVER_NAME]/$uri/index.php");
 		exit;
     	//echo "<p>Welcome $username</p>"; // SUCCESS!!!
 	}
 	else
 	{
     	$_SESSION["failuser"] = $username ;
-    	header("Location: http://$_SERVER[SERVER_NAME]/mm/login.php");
+    	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 		exit;
     	//echo "<p>PAM Said: $error. Get outa here!</p>"; // FAILURE :(
 	}
