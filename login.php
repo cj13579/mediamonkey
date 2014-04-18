@@ -45,7 +45,7 @@ include 'local_config.php';
         <? if(isset($_SESSION['failuser']))
         {
         	$failuser = $_SESSION['failuser'];
-        	echo "<div class=\"alert alert-danger\">Authentication failure</div>";
+        	echo "<div class=\"alert alert-danger\">You silly monkey. Try again...</div>";
         }
         ?>
         <? if(isset($_SESSION['tryme']))

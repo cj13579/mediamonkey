@@ -80,7 +80,7 @@ $userlast = $_SESSION['userlast'];
     <!-- End Header -->
 
     <!-- Body -->
-    <div class="container-fluid">
+    <div class="container">
     
     <p>
     <p>
@@ -90,17 +90,20 @@ $userlast = $_SESSION['userlast'];
       	<div class="row">
 
         	<div class="col-md-2">
-         	 	<p><img src="./images/user/user-96.png" alt="tv" class="img-rounded"></p>
+         	 	<p><img src="./images/monkey/monkey-100.png" alt="tv" class="img-rounded"></p>
       		</div>
       		<div class="col-md-10">
          	 	<p><b>Full Name:</b> <? echo "$userfull";?></p>
          	 	<p><b>Username:</b> <? echo "$username";?></p>
-         	 	<button class="btn btn-default" type="submit"><a href="logout.php">Logout</a></button>
+         	 	<button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button>
+         	 	
+         	 	
       		</div>	
       	</div>
-      	
-      	
-      	
+
+	<p class="text-muted"></p>
+  		
+  			 	
     </div>
     <!-- End Body -->
 

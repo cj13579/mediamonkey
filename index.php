@@ -93,7 +93,7 @@ $userlast = $_SESSION['userlast'];
 		<p></p>
 		<div class="jumbotron">
 			<div class="container">
-				<p><b><? echo "$userfirst"; ?></b>, MediaMonkey has been completely redesigned from the ground up to make it neater, faster and prettier. Click on the button below for more details about the changes.</p>
+				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! MediaMonkey has been completely redesigned from the ground up to make it neater, faster and prettier. Click on the button below for more details about the changes.</p>
 				<p><a class="btn btn-primary btn-lg" href="blog.php" role="button">Learn more &raquo;</a></p>
 			</div>
 		</div>
@@ -114,8 +114,13 @@ $userlast = $_SESSION['userlast'];
           		<p><a class="btn btn-default" href="folders.php" role="button">View folders &raquo;</a></p>
         	</div>
       	</div>
+  	
+      	
+      	
+      	
+    <!-- End Body -->      	
     </div>
-    <!-- End Body -->
+
 
 
 

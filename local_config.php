@@ -12,7 +12,7 @@ $xbmc_db_user = "xbmc";
 $xbmc_db_pass = "xbmc";
 $xbmc_db_database = "xbmc";
 
-$uri = "downloads";
+$uri = "mmdev";
 
 $tv_locs = "TV,TV2";
 
