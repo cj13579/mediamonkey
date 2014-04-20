@@ -221,7 +221,6 @@ $result2 = mysql_query($sql2) or die(mysql_error());
 			</form>
     	</div>
 		<!-- Main jumbotron for a primary marketing message or call to action -->
-	<form role="form" method="post" action="downloads.php" />
 <!--
 	<table class="table">
 	<tr>
@@ -275,6 +274,7 @@ $result2 = mysql_query($sql2) or die(mysql_error());
 		echo "<div class=\"col-md-2\">$channel</div>";
 		echo "<div class=\"col-md-2\">$airdate</div>";
 		echo "<div class=\"col-md-2\">";
+		echo "<form role=\"form\" method=\"post\" action=\"downloads.php\" />";
 		echo "<input type=\"hidden\" name=\"dl\" value=\"1\">";
 		echo "<input type=\"hidden\" name=\"download\" value=\"".$str3."\">";
 		echo "<input type=\"hidden\" name=\"type\" value=\"tvdl\">";
