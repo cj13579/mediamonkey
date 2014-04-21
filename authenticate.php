@@ -42,6 +42,7 @@ include 'local_config.php';
 	if (pam_auth($username, $password, &$error))
 	{
     	$_SESSION["user"] = $username ;
+    	$_SESSION["password"] = $password;
     	header("Location: http://$_SERVER[SERVER_NAME]/$uri/index.php");
 		exit;
     	//echo "<p>Welcome $username</p>"; // SUCCESS!!!

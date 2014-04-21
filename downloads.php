@@ -11,6 +11,7 @@ if(!isset($_SESSION["user"]))
 
 //Set variables up
 $username = $_SESSION["user"]; 
+$password = $_SESSION["password"];
 if(isset($_POST['download'])){$download = $_POST["download"];}
 if(isset($_POST['dl'])){$dl = $_POST["dl"];}
 if(isset($_POST['stream'])){$stream = $_POST["stream"];}
@@ -82,11 +83,11 @@ if (!mysql_query($sql,$con))
 
 if(is_null($uri))
 {
-header("location:http://$host:$port/$download");
+header("location:http://$username:$password@$host:$port/$download");
 }
 else
 {
-header("location:http://$host:$port/$uri/$download");
+header("location:http://$username:$password@$host:$port/$uri/$download");
 }
 
 }
@@ -108,11 +109,11 @@ if (!mysql_query($sql,$con))
 
 if(is_null($uri))
 {
-echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$download\">";
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$username:$password@$host:$port/$download\">";
 }
 else
 {
-echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri/$download\">";
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$username:$password@$host:$port/$uri/$download\">";
 }
 
 }
@@ -132,11 +133,11 @@ if (!mysql_query($sql,$con))
 
 if(is_null($uri))
 {
-echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port$download\">";
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$username:$password@$host:$port$download\">";
 }
 else
 {
-echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$host:$port/$uri$download\">";
+echo "<META http-equiv=\"refresh\" content=\"1;URL=http://$username:$password@$host:$port/$uri$download\">";
 }
 
 }
