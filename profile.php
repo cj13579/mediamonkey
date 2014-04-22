@@ -16,6 +16,77 @@ $userfull = $_SESSION['userfull'];
 $userfirst = $_SESSION['userfirst'];
 $userlast = $_SESSION['userlast'];
 
+
+if(isset($_POST['subscribe']))
+{
+
+//$showid = $_POST['showid'];
+$showname = $_POST['showname'];
+
+$con = mysql_connect("$db_host","$db_user","$db_pass");
+$sql = "UPDATE $db_database.users SET shows=CONCAT(shows,\",".$showname."\");";
+$result = mysql_query($sql) or die(mysql_error());
+$rows = mysql_num_rows($result);
+
+header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+exit;
+
+}
+
+if(isset($_POST['movsub']))
+{
+
+//$showid = $_POST['showid'];
+//$showname = $_POST['showname'];
+
+$con = mysql_connect("$db_host","$db_user","$db_pass");
+$sql = "UPDATE $db_database.users SET movies = 1;";
+$result = mysql_query($sql) or die(mysql_error());
+
+header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+exit;
+
+}
+
+if(isset($_POST['movunsub']))
+{
+
+//$showid = $_POST['showid'];
+//$showname = $_POST['showname'];
+
+$con = mysql_connect("$db_host","$db_user","$db_pass");
+$sql = "UPDATE $db_database.users SET movies = 0;";
+$result = mysql_query($sql) or die(mysql_error());
+
+header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+exit;
+
+}
+
+if(isset($_POST['tvunsub']))
+{
+
+//$showid = $_POST['showid'];
+$showname = $_POST['showname'];
+
+$con = mysql_connect("$db_host","$db_user","$db_pass");
+$sql = "UPDATE $db_database.users SET shows = REPLACE(shows, \",".$showname."\", '');";
+$result = mysql_query($sql) or die(mysql_error());
+$rows = mysql_num_rows($result);
+if ($rows == 0)
+{
+$sql = "UPDATE $db_database.users SET shows = REPLACE(shows, \"".$showname."\", '');";
+$result = mysql_query($sql) or die(mysql_error());
+}
+
+
+header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+exit;
+
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,13 +194,160 @@ $userlast = $_SESSION['userlast'];
       	</div>
       	
       	<div class="row">
-      		<div class="col-md-12">
       		<h2>Subscriptions</h2>
-      		<p>Use the following form to subscribe to TV shows. When you are subscribed then you will be emailed when a new episode of that show is downloaded. Just save your email address in the sections above.</p>
-      		</div>
+      		<p>Use the following form to subscribe to TV shows and movies. When you are subscribed you will be emailed when a new episode of that show or a new movie is added to the library. Just save your email address in the section above.</p>
+      	</div>
+      	
+      	<div class="row">
+      	
+      	<div class="col-md-6">
+      	<h4>TV</h4>
+      	<form class="form-inline" role="form" method="POST" action="profile.php">
+      	<div class="form-group">
+      	<select class="form-control" name="showname">
+    		<?
+    		$con = mysql_connect("localhost","xbmc","xbmc");
+    		if (!$con)
+    		{
+       			die('Could not connect: ' . mysql_error());
+    		}
+    		$sql = "SELECT DISTINCT * FROM tvshowview GROUP BY c12 ORDER BY c00";
+    		
+    		mysql_select_db("xbmc_videos75", $con);
+    		$result = mysql_query($sql) or die(mysql_error());
+   			$rows = mysql_num_rows($result);
+    		
+    		while($row = mysql_fetch_array($result))
+			{
+				$show = $row['c00'];
+				$id = $row['idShow'];
+				echo "<option value=\"".$show."\">".$show."</option>";
+				//echo "<input type=\"hidden\" name=\"showid\" value=\"".$id."\">";
+				//echo "<input type=\"hidden\" name=\"showname\" value=\"".$show."\">";
+			}
+    		
+    		?>
+    	</select>
+  		</div>
+  		<div class="form-group">
+  			<button type="submit" name="subscribe" class="btn btn-default">Subscribe</button>
+		</div>
+		</form>
+      	</div>
+      	
+      	<div class="col-md-6">
+      	<h4>Movies</h4>
+		<?	
+			$con = mysql_connect("$db_host","$db_user","$db_pass");
+			$sql = "SELECT * FROM $db_database.users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
+    		$result = mysql_query($sql) or die(mysql_error());
+    		$rows = mysql_num_rows($result);
+		
+    		while($row = mysql_fetch_array($result))
+			{
+				$shows = $row['shows'];
+				$movies = $row['movies'];
+				$len = strlen($shows);
+				$split = explode(",",$shows);
+				//echo $len;
+			}  
+
+			if ( $movies == 1)
+			{
+				echo "<div class=\"alert alert-success\">You're subscribed to Movies!</div>";
+			}
+			else
+			{
+				echo "<div class=\"alert alert-warning\">You silly monkey. You're not subscribed to Movies!</div>";
+				$not = 1;
+			}
+		?>		
+		<!-- end column -->
+      	</div>
+      	
+      	
+      	<!-- end row -->
       	</div>
 
-	<p class="text-muted"></p>
+      	<div class="row">
+		<div class="col-md-6">
+		<!-- <h4>Subscribed TV Shows</h4> -->
+
+    		<?
+			$con = mysql_connect("$db_host","$db_user","$db_pass");
+			$sql = "SELECT * FROM $db_database.users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
+    		$result = mysql_query($sql) or die(mysql_error());
+    		$rows = mysql_num_rows($result);
+		
+    		while($row = mysql_fetch_array($result))
+			{
+				$shows = $row['shows'];
+				$movies = $row['movies'];
+				$len = strlen($shows);
+				$split = explode(",",$shows);
+				//echo $len;
+			}    		
+
+			if ( $len > 0)
+			{
+				echo "<table class=\"table\">";
+				for ($i=0; $i<count($split); $i++)
+				{
+						echo "<tr>";
+      					echo "<td><form class=\"form-inline\" role=\"form\" method=\"POST\" action=\"profile.php\" >";
+						echo "$split[$i]";
+						echo "</td>";
+  						echo "<td>";
+  						echo "<input type=\"hidden\" name=\"showname\" value=\"".$split[$i]."\" >";
+  						echo "<button type=\"submit\" name=\"tvunsub\" class=\"btn btn-default\">Un-Subscribe</button>";
+						echo "</form></td>";
+						echo "</tr>";
+				}
+				echo "</table>";
+
+			}
+			else
+			{
+				echo "<div class=\"alert alert-warning\">You're not subscribed to any shows!</div>";
+			}
+ 			?> 		
+		
+		</div>
+		
+		<div class="col-md-6">
+		<?
+		
+		if ($not == 1)
+		{
+		?>
+      	<form class="form-inline" role="form" method="POST" action="profile.php">
+  		<div class="form-group">
+  			<button type="submit" name="movsub" class="btn btn-default">Subscribe to Movies</button>
+		</div>
+		</form>
+		
+		<?
+		}
+		else
+		{
+		?>
+      	<form class="form-inline" role="form" method="POST" action="profile.php">
+  		<div class="form-group">
+  			<button type="submit" name="movunsub" class="btn btn-default">Un-Subscribe from Movies</button>
+		</div>
+		</form>		
+		<?
+		}
+		?>
+		
+		</div>
+		
+      	</div>
+    
+    	<p>
+		
+      	<!-- </row>    -->
+	<p></p>
   		
   			 	
     </div>
