@@ -3,7 +3,6 @@ session_start();
 include 'local_config.php';
 if(!isset($_SESSION["user"]))
 {
-	$_SESSION['tryme'] = 1;
 	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 	exit;
 }
@@ -11,10 +10,19 @@ if(!isset($_SESSION["user"]))
 
 <?
 
-$username = $_SESSION['user'];
-$userfull = $_SESSION['userfull'];
+$user = $_SESSION["user"];
+
+$userinfo = posix_getpwnam("$user");
+$split = explode(",", $userinfo[gecos]);
+$_SESSION['userfull'] = $split[0];
+$split = explode(" ", $_SESSION['userfull']);
+$_SESSION['userfirst'] = $split[0];
 $userfirst = $_SESSION['userfirst'];
+$_SESSION['userlast'] = $split[1];
 $userlast = $_SESSION['userlast'];
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +35,7 @@ $userlast = $_SESSION['userlast'];
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Your profile - MediaMonkey</title>
+    <title>Media Monkey</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -80,60 +88,64 @@ $userlast = $_SESSION['userlast'];
     <!-- End Header -->
 
     <!-- Body -->
-    <div class="container">
-    
-    <p>
-    <p>
+    <div class="container-fluid">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<p></p>
 		
-      	<!-- Example row of columns -->
-      	<div class="row">
+		
+	<?php
+	$user = $_SESSION["user"];
+	if( "$user" == 'chris' )
+	{
+	
+	//do stuff
+	$con = mysql_connect("$db_host","$db_user","$db_pass");
+	$sql = "SELECT * FROM $db_database.$db_table ORDER BY dttm DESC LIMIT 10;";
+    $result = mysql_query($sql) or die(mysql_error());
+    $rows = mysql_num_rows($result);
+    ?>
+    
+    <h2>Recent Downloads</h2>
+	<div class="table-responsive">
+    <table class="table table-striped">
+    <tr>
+     <tr>
+      <th>Download</th>
+      <th>User</th>
+      <th>File</th>
+      <th>Date</th>
+	</tr>
 
-        	<div class="col-md-2">
-         	 	<p><img src="./images/monkey/monkey-100.png" alt="tv" class="img-rounded"></p>
-      		</div>
-      		<div class="col-md-10">
-         	 	<?
-         	 	$person = array();
-         	 	$file = file('/etc/mail.rc');
-         	 	for ($row=0; $row < count($file); $row++) 
-    			{
-    				$person[$row]=explode(" ",$file[$row]);
-    			}
-         	 	?>
-         	 	<p><b>Full Name:</b> <? echo "$userfull";?></p>
-         	 	<p><b>Username:</b> <? echo "$username";?></p>
-         	 	<p><b>Email:</b>
-         	 	<? 
-         	 	for ($row=0; $row < count($person); $row++) 
-    			{
-    				
-					if($person[$row][1] == $username)
-					{
-						$p2 = $person[$row][2];
-						echo $p2;
-					}
-    			}         	 	
-         	 	?>
-         	 	</p>
-         	 	<button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button>
-         	 	
-         	 	
-      		</div>	
-      	</div>
-      	
-      	<div class="row">
-      		<div class="col-md-12">
-      		<h2>Subscriptions</h2>
-      		<p>Use the following form to subscribe to TV shows. When you are subscribed then you will be emailed when a new episode of that show is downloaded. Just save your email address in the sections above.</p>
-      		</div>
-      	</div>
+	<?
+	while($row = mysql_fetch_array($result))
+	{
+		$uid = $row['user'];
+		$date =$row['dttm'];
+		$id = $row['stat_id'];
+		$file = $row['file'];
 
-	<p class="text-muted"></p>
-  		
-  			 	
+				
+		echo "<tr>";
+		echo "<td align=\"center\">$id</td>";
+		echo "<td>$uid</td>";
+		echo "<td>$date</td>";
+		echo "<td>$file</td>";
+		echo "</tr>";
+	}
+
+	?>  
+    </table>
+    
+    <? 	
+    }
+    else
+    {
+    	echo "<h2>Unauthorized</h2><small>You are unauthorized to see this page.</small>";
+    }	
+    ?>
+    <!-- End Body -->      	
     </div>
-    <!-- End Body -->
+
 
 
 
@@ -145,5 +157,4 @@ $userlast = $_SESSION['userlast'];
     <script src="./js/docs.min.js"></script>
   </body>
 </html>
-
 
