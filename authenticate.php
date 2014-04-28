@@ -12,7 +12,7 @@ include 'local_config.php';
     <meta name="author" content="">
     <link rel="shortcut icon" href="./favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Media Monkey</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">

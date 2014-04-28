@@ -27,7 +27,7 @@ $userlast = $_SESSION['userlast'];
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Your profile - MediaMonkey</title>
+    <title>Media Monkey</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">

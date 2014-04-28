@@ -98,7 +98,7 @@ exit;
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Your profile - MediaMonkey</title>
+    <title>Media Monkey</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -193,6 +193,7 @@ exit;
       		</div>	
       	</div>
       	
+      	<!--
       	<div class="row">
       		<h2>Subscriptions</h2>
       		<p>Use the following form to subscribe to TV shows and movies. When you are subscribed you will be emailed when a new episode of that show or a new movie is added to the library. Just save your email address in the section above.</p>
@@ -271,7 +272,7 @@ exit;
 
       	<div class="row">
 		<div class="col-md-6">
-		<!-- <h4>Subscribed TV Shows</h4> -->
+		<h4>Subscribed TV Shows</h4>
 
     		<?
 			$con = mysql_connect("$db_host","$db_user","$db_pass");
@@ -342,7 +343,7 @@ exit;
 		
 		</div>
 		
-      	</div>
+      	</div> -->
     
     	<p>
 		
