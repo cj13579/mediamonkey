@@ -81,7 +81,7 @@ if(!isset($_SESSION["user"]))
     }
     
     //set limit for number or results
-    $rc=30;
+    $rc=15;
     
     
     mysql_select_db("xbmc_videos75", $con);
@@ -113,7 +113,7 @@ if(!isset($_SESSION["user"]))
 	
     $max = 'LIMIT ' .($pagenum - 1) * $rc .',' .$rc;
     
-    $sql = "SELECT * FROM tvshowview ORDER BY tvshowview.c00 $max";
+    $sql = "SELECT * FROM tvshowview GROUP BY c12 ORDER BY tvshowview.c00 $max";
     
     $result = mysql_query($sql) or die(mysql_error());
     $rows = mysql_num_rows($result);
