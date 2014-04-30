@@ -142,18 +142,22 @@ $userlast = $_SESSION['userlast'];
 		<div class="container">
       	<!-- Example row of columns -->
       	<div class="row" align="center">
-        	<div class="col-md-4">
+      		<div class="col-md-3">
+      		</div>
+        	<div class="col-md-3">
           		<p><img src="./images/film_reel/film_reel-100.png" alt="Reel" class="img-rounded"></p>
-          		<p><a class="btn btn-default" href="moviemonkey.php" role="button">Go to Movies &raquo;</a></p>
+          		<p><a class="btn btn-default" href="moviemonkey.php" role="button">Movies &raquo;</a></p>
         	</div>
-        	<div class="col-md-4">
+        	<div class="col-md-3">
          	 	<p><img src="./images/tv_show/tv_show-100.png" alt="tv" class="img-rounded"></p>
-          		<p><a class="btn btn-default" href="tvmonkey.php" role="button">Go to TV Shows &raquo;</a></p>
+          		<p><a class="btn btn-default" href="tvmonkey.php" role="button">TV Shows &raquo;</a></p>
        		</div>
-        	<div class="col-md-4">
+      		<div class="col-md-3">
+      		</div>
+        	<!-- <div class="col-md-4">
           		<p><img src="./images/opened_folder/opened_folder-100.png" alt="folders" class="img-rounded"></p>
           		<p><a class="btn btn-default" href="folders.php" role="button">View folders &raquo;</a></p>
-        	</div>
+        	</div> -->
       	</div>
   	
       	
