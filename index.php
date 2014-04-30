@@ -95,11 +95,15 @@ $userlast = $_SESSION['userlast'];
 		
 		<!-- New MM Jumbo -->
 		<?php
-		$now = time();
-		$date = '2014/05/18';
+		//set jumbo counter
+		$i = 0;
+		$from = time();
+		$to = strtotime('2014/05/05');
 		//only show the jumbotron within a certain date range
-		if (strtotime($date) > $now) 
+		if ($from < $to) 
 		{	
+			//we are showing a jumbo so set this
+			$i = 1;
 		?>
 		<div class="jumbotron">
 			<div class="container">
@@ -107,12 +111,28 @@ $userlast = $_SESSION['userlast'];
 				<p><a class="btn btn-primary btn-lg" href="blog.php" role="button">Learn more &raquo;</a></p>
 			</div>
 		</div>
+
+		<?
+		//close if
+		}
 		
+		//only show the jumbotron if not already showing one.
+		if ($i < 1)
+		{	
+		?>
+		<div class="jumbotron">
+			<div class="container">
+				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! Don't forget to add your email address so that you we can let you know when a new show is added.</p>
+				<p><a class="btn btn-primary btn-lg" href="profile.php" role="button">Do it now &raquo;</a></p>
+			</div>
+		</div>	
+
 		<?
 		//close if
 		}
 		?>
-		
+
+
 		<!-- End New MM jumbo -->
 		
 		
