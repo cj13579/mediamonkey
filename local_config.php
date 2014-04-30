@@ -6,6 +6,7 @@ $db_user = "mmonkey";
 $db_pass = "mmonkey";
 $db_database = "mediamonkey";
 $db_table = "stats_test";
+$db_table_users = "users";
 
 $xbmc_db_host = "localhost";
 $xbmc_db_user = "xbmc";

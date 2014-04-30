@@ -3,6 +3,7 @@ session_start();
 include 'local_config.php';
 if(!isset($_SESSION["user"]))
 {
+	$_SESSION['tryme'] = 1;
 	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 	exit;
 }
@@ -10,19 +11,10 @@ if(!isset($_SESSION["user"]))
 
 <?
 
-$user = $_SESSION["user"];
-
-$userinfo = posix_getpwnam("$user");
-$split = explode(",", $userinfo[gecos]);
-$_SESSION['userfull'] = $split[0];
-$split = explode(" ", $_SESSION['userfull']);
-$_SESSION['userfirst'] = $split[0];
+$username = $_SESSION['user'];
+$userfull = $_SESSION['userfull'];
 $userfirst = $_SESSION['userfirst'];
-$_SESSION['userlast'] = $split[1];
 $userlast = $_SESSION['userlast'];
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -89,63 +81,78 @@ $userlast = $_SESSION['userlast'];
 
     <!-- Body -->
     <div class="container">
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<p></p>
-		
-		
+    
+    <p>
 	<?php
-	$user = $_SESSION["user"];
-	if( "$user" == 'chris' )
-	{
-	
-	//do stuff
-	$con = mysql_connect("$db_host","$db_user","$db_pass");
-	$sql = "SELECT * FROM $db_database.$db_table ORDER BY dttm DESC LIMIT 10;";
-    $result = mysql_query($sql) or die(mysql_error());
-    $rows = mysql_num_rows($result);
-    ?>
-    
-    <h2>Recent Downloads</h2>
-	<div class="table-responsive">
-    <table class="table table-striped">
-    <tr>
-     <tr>
-      <th>Download</th>
-      <th>User</th>
-      <th>File</th>
-      <th>Date</th>
-	</tr>
+	//$out = shell_exec("git log -1 --pretty --abbrev-commit --color");
+	//echo "$out";
 
-	<?
-	while($row = mysql_fetch_array($result))
-	{
-		$uid = $row['user'];
-		$date =$row['dttm'];
-		$id = $row['stat_id'];
-		$file = $row['file'];
-
-				
-		echo "<tr>";
-		echo "<td align=\"center\">$id</td>";
-		echo "<td>$uid</td>";
-		echo "<td>$date</td>";
-		echo "<td>$file</td>";
-		echo "</tr>";
+$dir = ".";
+$output = array();
+chdir($dir);
+exec("git log --abbrev-commit",$output);
+$history = array();
+foreach($output as $line){
+    if(strpos($line, 'commit')===0){
+	if(!empty($commit)){
+	    array_push($history, $commit);	
+	    unset($commit);
 	}
-
-	?>  
-    </table>
-    
-    <? 	
+	$commit['hash']   = substr($line, strlen('commit'));
     }
-    else
-    {
-    	echo "<h2>Unauthorized</h2><small>You are unauthorized to see this page.</small>";
-    }	
-    ?>
-    <!-- End Body -->      	
-    </div>
+    else if(strpos($line, 'Author')===0){
+	$commit['author'] = substr($line, strlen('Author:'));
+    }
+    else if(strpos($line, 'Date')===0){
+	$commit['date']   = substr($line, strlen('Date:'));
+    }
+    else{		
+	$commit['message']  .= $line;
+    }
+}
+ 
+//print_r($history);
+?>
+   <table class="table" >
+     <tr>
+       <th></th>
+       <th>Commit</th>
+    <!--   <th>Author</th> -->
+       <th>Date</th>
+	<th>Message</th>
+    </tr>
+     
+	<?
+	$cols = 4;
+    for ($row=0; $row < count($history); $row++) 
+    { 
+    echo "<tr>"; 
+    echo "<td>".$row."</td>";
+    echo "<td>".$history[$row]['hash']."</td>";
+    //echo "<td>".$history[$row]['author']."</td>";
+    echo "<td>".$history[$row]['date']."</td>";
+    echo "<td>".$history[$row]['message']."</td>";
+    
 
+        
+        /*for ($c=0; $c<$cols; $c++) 
+        {
+        	if ( "$" == "hash" )
+        	{
+        		
+        	}
+        } */
+    echo "</tr>"; 
+    }
+	?>
+
+   </table>
+
+    <p>
+
+
+    </div>
+    <!-- End Body -->
 
 
 
@@ -157,4 +164,7 @@ $userlast = $_SESSION['userlast'];
     <script src="./js/docs.min.js"></script>
   </body>
 </html>
+
+
+
 

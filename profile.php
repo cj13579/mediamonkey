@@ -165,33 +165,44 @@ exit;
       		</div>
       		<div class="col-md-10">
          	 	<?
-         	 	$person = array();
-         	 	$file = file('/etc/mail.rc');
-         	 	for ($row=0; $row < count($file); $row++) 
-    			{
-    				$person[$row]=explode(" ",$file[$row]);
-    			}
+
+         	 	
+				$con = mysql_connect("$db_host","$db_user","$db_pass");
+				$sql = "SELECT * FROM $db_database.$db_table_users ;";
+  				$result = mysql_query($sql) or die(mysql_error());
+  				$rows = mysql_num_rows($result);
+    			
          	 	?>
          	 	<p><b>Full Name:</b> <? echo "$userfull";?></p>
          	 	<p><b>Username:</b> <? echo "$username";?></p>
          	 	<p><b>Email:</b>
          	 	<? 
-         	 	for ($row=0; $row < count($person); $row++) 
-    			{
-    				
-					if($person[$row][1] == $username)
+				while($row = mysql_fetch_array($result))
+				{
+					if($row['username'] == $username)
 					{
-						$p2 = $person[$row][2];
-						echo $p2;
+						$email = $row['email'];
+						if(strlen($email) > 0)
+						{
+							echo "$email <button class=\"btn btn-default\" type=\"submit\"><a href=\"emails.php?type=change&email=$email\">Change</a></button>";
+						}
+						else
+						{
+							echo "No email address. <button class=\"btn btn-default\" type=\"submit\"><a href=\"emails.php?type=add\">Add</a></button>";
+						}
 					}
     			}         	 	
          	 	?>
-         	 	</p>
-         	 	<button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button>
-         	 	
+         	 	</p>        	 	
          	 	
       		</div>	
       	</div>
+      	
+      	<div class="row">
+      		<h2>Feedback</h2>
+      		<p><button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button></p>
+      	</div>      	
+      	         	 	
       	
       	<div class="row">
       		<h2>Subscriptions</h2>
@@ -237,7 +248,7 @@ exit;
       	
       	<div class="col-md-6">
       	<h4>Movies</h4>
-		<?	
+		<?
 			$con = mysql_connect("$db_host","$db_user","$db_pass");
 			$sql = "SELECT * FROM $db_database.users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
     		$result = mysql_query($sql) or die(mysql_error());
@@ -251,17 +262,32 @@ exit;
 				$split = explode(",",$shows);
 				//echo $len;
 			}  
-
-			if ( $movies == 1)
-			{
-				echo "<div class=\"alert alert-success\">You're subscribed to Movies!</div>";
-			}
-			else
-			{
-				echo "<div class=\"alert alert-warning\">You silly monkey. You're not subscribed to Movies!</div>";
-				$not = 1;
-			}
-		?>		
+		
+		if ($movies == 0)
+		{
+		?>
+      	<form class="form-inline" role="form" method="POST" action="profile.php">
+  		<div class="form-group">
+  			<button type="submit" name="movsub" class="btn btn-default">Subscribe</button>
+		</div>
+		</form>
+		
+		<?
+		}
+		else
+		{
+		?>
+      	<form class="form-inline" role="form" method="POST" action="profile.php">
+  		<div class="form-group">
+  			<button type="submit" name="movunsub" class="btn btn-default">Un-Subscribe</button>
+		</div>
+		</form>		
+		<?
+		}
+		?>
+      	<!--
+		
+		-->
 		<!-- end column -->
       	</div>
       	
@@ -270,8 +296,11 @@ exit;
       	</div>
 
       	<div class="row">
+      	<p></p>
+      	</div>
+
+      	<div class="row">
 		<div class="col-md-6">
-		<!-- <h4>Subscribed TV Shows</h4> -->
 
     		<?
 			$con = mysql_connect("$db_host","$db_user","$db_pass");
@@ -315,30 +344,22 @@ exit;
 		</div>
 		
 		<div class="col-md-6">
-		<?
-		
-		if ($not == 1)
-		{
+
+		<?	
+
+			if ( $movies == 1)
+			{
+				echo "<div class=\"alert alert-success\">You're subscribed to Movies!</div>";
+			}
+			else
+			{
+				echo "<div class=\"alert alert-warning\">You silly monkey. You're not subscribed to Movies!</div>";
+				$not = 1;
+			}
 		?>
-      	<form class="form-inline" role="form" method="POST" action="profile.php">
-  		<div class="form-group">
-  			<button type="submit" name="movsub" class="btn btn-default">Subscribe to Movies</button>
-		</div>
-		</form>
-		
-		<?
-		}
-		else
-		{
-		?>
-      	<form class="form-inline" role="form" method="POST" action="profile.php">
-  		<div class="form-group">
-  			<button type="submit" name="movunsub" class="btn btn-default">Un-Subscribe from Movies</button>
-		</div>
-		</form>		
-		<?
-		}
-		?>
+		<!--
+
+		-->
 		
 		</div>
 		
