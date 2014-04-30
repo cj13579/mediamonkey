@@ -115,7 +115,7 @@ foreach($output as $line){
 ?>
    <table class="table" >
      <tr>
-       <th></th>
+    <!--   <th></th> -->
        <th>Commit</th>
     <!--   <th>Author</th> -->
        <th>Date</th>
@@ -127,7 +127,7 @@ foreach($output as $line){
     for ($row=0; $row < count($history); $row++) 
     { 
     echo "<tr>"; 
-    echo "<td>".$row."</td>";
+    //echo "<td>".$row."</td>";
     echo "<td>".$history[$row]['hash']."</td>";
     //echo "<td>".$history[$row]['author']."</td>";
     echo "<td>".$history[$row]['date']."</td>";
