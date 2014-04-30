@@ -100,7 +100,7 @@ $userlast = $_SESSION['userlast'];
 	
 	//do stuff
 	$con = mysql_connect("$db_host","$db_user","$db_pass");
-	$sql = "SELECT * FROM $db_database.$db_table ORDER BY dttm DESC LIMIT 10;";
+	$sql = "SELECT * FROM $db_database.$db_table WHERE med_type = 'tvdl' OR med_type = 'movdl' ORDER BY dttm DESC LIMIT 10;";
     $result = mysql_query($sql) or die(mysql_error());
     $rows = mysql_num_rows($result);
     ?>
@@ -112,8 +112,8 @@ $userlast = $_SESSION['userlast'];
      <tr>
       <th>Download</th>
       <th>User</th>
-      <th>File</th>
       <th>Date</th>
+      <th>File</th>
 	</tr>
 
 	<?
@@ -135,6 +135,41 @@ $userlast = $_SESSION['userlast'];
 
 	?>  
     </table>
+    </div>
+
+    <h2>Recent Logins</h2>
+	<div class="table-responsive">
+    <table class="table table-striped">
+    <tr>
+     <tr>
+      <th>User</th>
+      <th>Date and Time</th>
+      <th>Location</th>
+	</tr>   
+	 
+	<?
+	$sql = "SELECT * FROM $db_database.$db_table where type = 'login' ORDER BY dttm DESC LIMIT 20;";
+    $result = mysql_query($sql) or die(mysql_error());
+    $rows = mysql_num_rows($result);
+    
+	while($row = mysql_fetch_array($result))
+	{
+		$uid = $row['user'];
+		$date =$row['dttm'];
+		$location = $row['file'];
+
+				
+		echo "<tr>";
+		echo "<td>$uid</td>";
+		echo "<td>$date</td>";
+		echo "<td>$location</td>";
+		echo "</tr>";
+	}
+
+	?> 
+
+    </table>
+    </div>    
     
     <? 	
     }
@@ -143,6 +178,8 @@ $userlast = $_SESSION['userlast'];
     	echo "<h2>Unauthorized</h2><small>You are unauthorized to see this page.</small>";
     }	
     ?>
+    
+    
     <!-- End Body -->      	
     </div>
 
