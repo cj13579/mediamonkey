@@ -43,6 +43,14 @@ include 'local_config.php';
 	{
     	$_SESSION["user"] = $username ;
     	$_SESSION["password"] = $password;
+    	$date = date('Y-m-d H:i:s');
+    	$location = $_SERVER['REMOTE_HOST'];
+    	
+		$con = mysql_connect("$db_host","$db_user","$db_pass");
+		$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) VALUES ('$username', '', '$date','','login', '', '');";
+   		$result = mysql_query($sql) or die(mysql_error());
+    	$rows = mysql_num_rows($result);    	
+    	
     	header("Location: http://$_SERVER[SERVER_NAME]/$uri/index.php");
 		exit;
     	//echo "<p>Welcome $username</p>"; // SUCCESS!!!
