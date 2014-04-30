@@ -198,10 +198,7 @@ exit;
       		</div>	
       	</div>
       	
-      	<div class="row">
-      		<h2>Feedback</h2>
-      		<p><button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button></p>
-      	</div>      	
+	
       	         	 	
       	
       	<div class="row">
@@ -367,6 +364,54 @@ exit;
       	</div>
     
     	<p>
+      	<div class="row">
+      	
+      	<div class="col-md-6">
+      		<h3>Feedback</h3>
+      		<p><button class="btn btn-default" type="submit"><a href="feedback.php">Submit Feedback</a></button></p>
+      	</div>
+      	
+      	<div class="col-md-6">
+      	<h3>Version</h3>
+      	<p>
+      	<?
+		$dir = ".";
+		$output = array();
+		chdir($dir);
+		exec("git log --abbrev-commit",$output);
+		$history = array();
+		foreach($output as $line)
+		{
+		    if(strpos($line, 'commit')===0)
+		    {
+				if(!empty($commit))
+				{
+		    	array_push($history, $commit);	
+		    	unset($commit);
+				}
+			$commit['hash']   = substr($line, strlen('commit'));
+   		 	}
+    		else if(strpos($line, 'Author')===0)
+    		{
+				$commit['author'] = substr($line, strlen('Author:'));
+    		}
+    		else if(strpos($line, 'Date')===0)
+    		{
+				$commit['date']   = substr($line, strlen('Date:'));
+    		}
+    		else
+    		{		
+				$commit['message']  .= $line;
+    		}
+		}      	
+      	echo "Media Monkey version: ".$history[$row]['hash'];
+      	echo "<br />";
+      	echo "Published: ".$history[$row]['date'];;
+      	?>
+      	</p>
+      	</div>	
+      	
+      	</div>      
 		
       	<!-- </row>    -->
 	<p></p>
