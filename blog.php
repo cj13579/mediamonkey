@@ -79,7 +79,22 @@ if(!isset($_SESSION["user"]))
       	<!-- <div class="row"><div class="col-md-12"><h1>The MediaMonkey Blog</h1></div></div> -->
       	<div class="row"><div class="col-md-12"></div></div>
       	<div class="row"><div class="col-md-12"><h3>MediaMonkey 0.4 has landed!<small> April 18, 2014 by Chris</small></h3></div></div>
-<p>Well, as you can see the changes in this version of MediaMonkey are pretty significant. Not only is the whole look and feel of the website different, but a lot of the back-end stuff has been changed to make the site run a lot better. When I get some time, and can be arsed, then I'll describe the major changes.</p>
+<p>Well as you will be able to see, the changes in this version of MediaMonkey are pretty significant. Not only does MediaMonkey finally now have a logo (name suggestions please), but the whole look and feel of the website different. In addition, a lot of the back-end stuff has been changed to make the site run a lot better which I hope you will appreciate. Here are the major changes:</p>
+
+<ul>
+<li><b>Libraries</b> - They actually work! The Library options for TV and Movies will now be faster than browsing the folders unlike before.</li>
+<li><b>Profiles</b> - As more functionality is added this is where you will go to opt-in to it (see below). In time to use some of the new stuff you will need to add personal information like an email address. At the moment you can send me feedback from this page.</li>
+</ul>
+
+<p>There are still some things that I am working on migrating over to the latest version (search, for example) but the core functionality is still there that most people are using. I am also working on an exciting new feature which I hope will make people's lives easier:</p>
+
+<ul>
+<li><b>Subscriptions</b> - I am really excited about this and have been wanting to do it for a while now. Soon you will be able to subscribe to TV Shows. Once you have subscribed to a show MediaMonkey will send you an email when a new episode of that show has been added to the library. You will also be able to subscribe to movies which will email you when a new film has been added.</li>
+</ul>
+
+<p>Finally, there is a new link www.cjblake.net/downloads. The old one will still work but, please update your bookmarks and use this one in the future. The old one will still work, but I will look to turn it off pretty soon.</p>
+
+<p>I hope you like it. Please drop me an email if you have any questions or feedback. I'm always looking to make it better.</p>
 <p></p>
 <!-- <dl>
   <dt>Authentication</dt>
