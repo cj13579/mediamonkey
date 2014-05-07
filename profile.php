@@ -20,16 +20,46 @@ $userlast = $_SESSION['userlast'];
 if(isset($_POST['subscribe']))
 {
 
-//$showid = $_POST['showid'];
-$showname = $_POST['showname'];
+	//$showid = $_POST['showid'];
+	$showname = $_POST['showname'];
 
-$con = mysql_connect("$db_host","$db_user","$db_pass");
-$sql = "UPDATE $db_database.users SET shows=CONCAT(shows,\",".$showname."\");";
-$result = mysql_query($sql) or die(mysql_error());
-$rows = mysql_num_rows($result);
+	$con = mysql_connect("$db_host","$db_user","$db_pass");
+	$sql = "SELECT * FROM $db_database.$db_table_users WHERE username = \"$username\" AND shows LIKE \"%$showname%\" ;";
+	$result = mysql_query($sql) or die(mysql_error());
+	$rows = mysql_num_rows($result);
+	
+	if($rows < 1)
+	{
+	
+		while($row = mysql_fetch_array($result))
+		{
+			$shows = $row['shows'];
+			$showlen = strlen($shows);
+		}
+	
+		if ($showlen > 0)
+		{
+		$sql = "UPDATE $db_database.$db_table_users SET shows=CONCAT(shows,\",".$showname."\") WHERE username = \"$username\";";
+		$result = mysql_query($sql) or die(mysql_error());
+		$rows = mysql_num_rows($result);
+		}
+		else
+		{
+		$sql = "UPDATE $db_database.$db_table_users SET shows=\"$showname\" WHERE username = \"$username\";";
+		$result = mysql_query($sql) or die(mysql_error());
+		$rows = mysql_num_rows($result);
+		}
+		header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
+		exit;
+	
+	}
+	else
+	{
+		header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php?as=$showname");
+		exit;
+	}
+	
 
-header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
-exit;
 
 }
 
@@ -40,7 +70,7 @@ if(isset($_POST['movsub']))
 //$showname = $_POST['showname'];
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
-$sql = "UPDATE $db_database.users SET movies = 1;";
+$sql = "UPDATE $db_database.$db_table_users SET movies = 1 WHERE username = \"$username\";";
 $result = mysql_query($sql) or die(mysql_error());
 
 header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
@@ -55,7 +85,7 @@ if(isset($_POST['movunsub']))
 //$showname = $_POST['showname'];
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
-$sql = "UPDATE $db_database.users SET movies = 0;";
+$sql = "UPDATE $db_database.$db_table_users SET movies = 0 WHERE username = \"$username\";";
 $result = mysql_query($sql) or die(mysql_error());
 
 header("Location: http://$_SERVER[SERVER_NAME]/$uri/profile.php");
@@ -70,13 +100,20 @@ if(isset($_POST['tvunsub']))
 $showname = $_POST['showname'];
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
-$sql = "UPDATE $db_database.users SET shows = REPLACE(shows, \",".$showname."\", '');";
+$sql = "UPDATE $db_database.$db_table_users SET shows = REPLACE(shows, \",".$showname."\", '') WHERE username = \"$username\";";
 $result = mysql_query($sql) or die(mysql_error());
 $rows = mysql_num_rows($result);
 if ($rows == 0)
 {
-$sql = "UPDATE $db_database.users SET shows = REPLACE(shows, \"".$showname."\", '');";
+$sql = "UPDATE $db_database.$db_table_users SET shows = REPLACE(shows, \"".$showname.",\", '') WHERE username = \"$username\";";
 $result = mysql_query($sql) or die(mysql_error());
+$rows = mysql_num_rows($result);
+}
+if ($rows == 0)
+{
+$sql = "UPDATE $db_database.$db_table_users SET shows = REPLACE(shows, \"".$showname."\", '') WHERE username = \"$username\";";
+$result = mysql_query($sql) or die(mysql_error());
+$rows = mysql_num_rows($result);
 }
 
 
@@ -248,7 +285,7 @@ exit;
       	<h4>Movies</h4>
 		<?
 			$con = mysql_connect("$db_host","$db_user","$db_pass");
-			$sql = "SELECT * FROM $db_database.users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
+			$sql = "SELECT * FROM $db_database.$db_table_users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
     		$result = mysql_query($sql) or die(mysql_error());
     		$rows = mysql_num_rows($result);
 		
@@ -302,7 +339,7 @@ exit;
 
     		<?
 			$con = mysql_connect("$db_host","$db_user","$db_pass");
-			$sql = "SELECT * FROM $db_database.users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
+			$sql = "SELECT * FROM $db_database.$db_table_users where username like \"$username\" and shows not like \"\" OR movies = 1 ";
     		$result = mysql_query($sql) or die(mysql_error());
     		$rows = mysql_num_rows($result);
 		

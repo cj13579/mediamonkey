@@ -86,7 +86,7 @@ if(isset($_GET['email'])){ $email = $_GET['email']; }
 	{
 
 	$con = mysql_connect("$db_host","$db_user","$db_pass");
-	$sql = "UPDATE $db_database.users SET email = \"$email\" WHERE username = \"$username\"; ";
+	$sql = "UPDATE $db_database.$db_table_users SET email = \"$email\" WHERE username = \"$username\"; ";
     $result = mysql_query($sql) or die(mysql_error());
     $rows = mysql_num_rows($result);
     
@@ -100,7 +100,7 @@ if(isset($_GET['email'])){ $email = $_GET['email']; }
 	{
 
 	$con = mysql_connect("$db_host","$db_user","$db_pass");
-	$sql = "UPDATE $db_database.users SET email = \"$email\" WHERE username = \"$username\"; ";
+	$sql = "UPDATE $db_database.$db_table_users SET email = \"$email\" WHERE username = \"$username\"; ";
     $result = mysql_query($sql) or die(mysql_error());
     $rows = mysql_num_rows($result);
     
