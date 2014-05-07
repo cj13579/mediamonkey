@@ -88,7 +88,7 @@ $userlast = $_SESSION['userlast'];
     <!-- End Header -->
 
     <!-- Body -->
-    <div class="container-fluid">
+    <div class="container">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<p></p>
 		
