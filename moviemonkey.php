@@ -182,6 +182,8 @@ if(!isset($_SESSION["user"]))
               </tbody>
             </table>
             
+            
+            
 		<div class="container-fluid" align="center">
 <?php
     
@@ -192,30 +194,30 @@ if(!isset($_SESSION["user"]))
         echo "<p>--Page $pagenum of $last-- ";
         $next = $pagenum+1;
         // This shows the user what page they are on, and the total number of pages
-        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
+        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next' class=\"btn btn-default\" role=\"button\">Next </a> ";
         echo " ";
-        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
+        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last' class=\"btn btn-default\" role=\"button\">Last </a></p> ";
     }
     elseif ($pagenum == $last)
     {
-        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
+        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1' class=\"btn btn-default\" role=\"button\"> First</a> ";
         echo " ";
         $previous = $pagenum-1;
-        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
+        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous' class=\"btn btn-default\" role=\"button\"> Previous</a> ";
         echo "--Page $pagenum of $last-- </p>";
     }
     else
     {
         $next = $pagenum+1;
-        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1'> <<-First</a> ";
+        echo "<p><a href='{$_SERVER['PHP_SELF']}?pagenum=1' class=\"btn btn-default\" role=\"button\"> First</a> ";
         echo " ";
         $previous = $pagenum-1;
-        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous'> <-Previous</a> ";
+        echo " <a href='{$_SERVER['PHP_SELF']}?pagenum=$previous' class=\"btn btn-default\" role=\"button\"> Previous</a> ";
         // This shows the user what page they are on, and the total number of pages
         echo "--Page $pagenum of $last-- ";
-        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next'>Next -></a> ";
+        echo "<a href='{$_SERVER['PHP_SELF']}?pagenum=$next' class=\"btn btn-default\" role=\"button\">Next </a> ";
         echo " ";
-        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last'>Last ->></a></p> ";
+        echo " <td><a href='{$_SERVER['PHP_SELF']}?pagenum=$last' class=\"btn btn-default\" role=\"button\">Last </a></p> ";
     } 
     
     ?>
