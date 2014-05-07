@@ -157,9 +157,6 @@ $userlast = $_SESSION['userlast'];
 		?>
 		
 		-->
-		
-		
-		<div class="container">
       	<!-- Example row of columns -->
       	<div class="row" align="center">
       		<div class="col-md-3">
@@ -179,9 +176,6 @@ $userlast = $_SESSION['userlast'];
           		<p><a class="btn btn-default" href="folders.php" role="button">View folders &raquo;</a></p>
         	</div> -->
       	</div>
-  	
-      	
-      	
       	
     <!-- End Body -->      	
     </div>
