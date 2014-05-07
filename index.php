@@ -108,7 +108,7 @@ $userlast = $_SESSION['userlast'];
 		<div class="jumbotron">
 			<div class="container">
 				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! MediaMonkey has been completely redesigned from the ground up to make it neater, faster and prettier. Click on the button below for more details about the changes.</p>
-				<p><a class="btn btn-primary btn-lg" href="blog.php" role="button">Learn more &raquo;</a></p>
+				<p><a class="btn btn-primary btn-lg" href="blog.php#monkey04" role="button">Learn more &raquo;</a></p>
 			</div>
 		</div>
 

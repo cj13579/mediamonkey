@@ -71,14 +71,16 @@ if(!isset($_SESSION["user"]))
     <!-- End Header -->
 
     <!-- Body -->
-    <div class="container-fluid">
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="container">
-      	<!-- Example row of columns -->
-      	<div class="row"><div class="col-md-12"></div></div>
+    <div class="container">
       	<!-- <div class="row"><div class="col-md-12"><h1>The MediaMonkey Blog</h1></div></div> -->
-      	<div class="row"><div class="col-md-12"></div></div>
-      	<div class="row"><div class="col-md-12"><h3>MediaMonkey 0.4 has landed!<small> April 18, 2014 by Chris</small></h3></div></div>
+      	<div class="row">
+      	<p>
+      	<p>
+      	</div>
+      	<div class="row">
+      	
+      	<div class="col-md-9" id="monkey04">
+      	<h3>MediaMonkey 0.4 has landed!<small> April 18, 2014 by Chris</small></h3>
 <p>Well as you will be able to see, the changes in this version of MediaMonkey are pretty significant. Not only does MediaMonkey finally now have a logo (name suggestions please), but the whole look and feel of the website different. In addition, a lot of the back-end stuff has been changed to make the site run a lot better which I hope you will appreciate. Here are the major changes:</p>
 
 <ul>
@@ -102,8 +104,18 @@ if(!isset($_SESSION["user"]))
   <dt>Media browsing</dt>
   <dd>...</dd>
 </dl> -->
-      	<div class="row"><div class="col-md-12"></div></div>
-      	<div class="row"><div class="col-md-12"><h3>MediaMonkey 0.3 is done!<small> October 09, 2013 by Chris</small></h3></div></div>
+		</div>
+		<div class="col-md-3">
+		<p>
+
+			<div class="well">
+				<p>This is the Media Monkey blog. I'll use this space to go into detail about the changes to the system, new features, layout etc.</p>
+			</div>
+		</p>
+		</div>
+
+      	<div class="row"><div class="col-md-9"></div></div>
+      	<div class="row" id="monkey03"><div class="col-md-9"><h3>MediaMonkey 0.3 is done!<small> October 09, 2013 by Chris</small></h3>
 <p>The changes in this version are all feature additons which I hope you will find useful.</p>
 <dl>
   <dt>Updated homepage</dt>
@@ -113,8 +125,13 @@ if(!isset($_SESSION["user"]))
   <dt>bug/feature requests</dt>
   <dd>Similar to the above but this is for requesting more features for MediaMonkey as I am keen to get some ideas for additions. You can also use this feature to report stuff that doesn't work.</dd>
 </dl>
-      	<div class="row"><div class="col-md-12"></div></div>
-      	<div class="row"><div class="col-md-12"><h3>MediaMonkey 0.2 is here!<small> March 22, 2013 by Chris</small></h3></div></div>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+
+      	<div class="row"><div class="col-md-9"></div></div>
+      	<div class="row" id="monkey02"><div class="col-md-9"><h3>MediaMonkey 0.2 is here!<small> March 22, 2013 by Chris</small></h3>
 <p>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:</p>
 <dl>
   <dt>look and feel</dt>
@@ -129,16 +146,22 @@ if(!isset($_SESSION["user"]))
   </ul>
   </dd>
 </dl>
-      	<div class="row"><div class="col-md-12"></div></div>
-      	<div class="row"><div class="col-md-12"><h3>MediaMonkey arrives!<small> February 5, 2013 by Chris</small></h3></div></div>
+</div>
+<div class="col-md-3"></div>
+</div>
+      	<div class="row"><div class="col-md-9"></div><div class="col-md-3"></div></div>
+      	<div class="row" id="monkey"><div class="col-md-9"><h3>MediaMonkey arrives!<small> February 5, 2013 by Chris</small></h3>
 <p>Welcome to Media Monkey. I hope you find it an improvement on the previous interface to my movies and TV. At the moment only the Movies section is fully working with the new look and while there is a "library" view available for TV you can't download anything through it yet. Don't fear though, you can us the "tv" and "tv2" links as of old to get all available TV episodes.</p>
 			
 			<p>I don't know whether or not any of you do but for quite a few of the TV episodes and a few of the movies you can stream them straight from your browser (Chrome works the best). The files need to be MP4. If you want to do that with any of the films then you will need to use the "films" menu which will take you to the familiar boring site. The library mode will force you to download the file.</p>
 			
 			<p>Although I have tested downloading a few movies there is a chance that some stuff doesn't work. So, please let me know if anything is broken and I'll do my best to get it sorted for you ASAP.</p>
 			<p> Ta, Chris.</p>
-      	</div>
+		<div class="col-md-3"></div>
+	</div></div>
+
     </div>
+    
     <!-- End Body -->
 
 
