@@ -1,0 +1,19 @@
+<?php
+
+/* Database variables. */
+$db_host = "localhost";
+$db_user = "XXX";
+$db_pass = "XXX";
+$db_database = "XXX";
+$db_table = "XXX";
+$db_table_users = "XXX";
+
+$xbmc_db_host = "XXX";
+$xbmc_db_user = "xbmc";
+$xbmc_db_pass = "XXXX";
+$xbmc_db_database = "XXXXX";
+
+$uri = "mediamonkey";
+
+
+?>
