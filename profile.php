@@ -256,7 +256,7 @@ exit;
     		}
     		$sql = "SELECT DISTINCT * FROM tvshowview GROUP BY c12 ORDER BY c00";
     		
-    		mysql_select_db("xbmc_videos75", $con);
+    		mysql_select_db("$xbmc_db_database", $con);
     		$result = mysql_query($sql) or die(mysql_error());
    			$rows = mysql_num_rows($result);
     		

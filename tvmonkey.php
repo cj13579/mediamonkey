@@ -84,7 +84,7 @@ if(!isset($_SESSION["user"]))
     $rc=15;
     
     
-    mysql_select_db("xbmc_videos75", $con);
+    mysql_select_db("$xbmc_db_database", $con);
     $sql = "SELECT * from tvshowview ";
     
     $result = mysql_query($sql) or die(mysql_error());

@@ -84,7 +84,7 @@ if(!isset($_SESSION["user"]))
     $rc=30;
     
     
-    mysql_select_db("xbmc_videos75", $con);
+    mysql_select_db("$xbmc_db_database", $con);
     $sql = "SELECT art.art_id, art.media_id, art.media_type, art.type, art.url, movie.idMovie, movie.c00, movie.c07, movie.c14, movie.c22 FROM art, movie WHERE art.media_id = movie.idMovie AND art.media_type LIKE 'movie' AND art.type LIKE 'poster' ORDER BY movie.c00";
     
     $result = mysql_query($sql) or die(mysql_error());

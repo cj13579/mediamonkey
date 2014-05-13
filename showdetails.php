@@ -131,7 +131,7 @@ if(isset($_GET['season'])){$season = $_GET['season'];}else{$season = 1;}
 
 if (isset($season))
 {
-$db = mysql_select_db("xbmc_videos75", $con);
+$db = mysql_select_db("$xbmc_db_database", $con);
 $sql = "SELECT * from episodeview WHERE strTitle LIKE \"$title\" AND c12 = \"$season\" ORDER BY c13";
 $sql2 = "SELECT COUNT(DISTINCT c12) as NumSeries from episodeview WHERE strTitle LIKE \"$title\" ";
 $result = mysql_query($sql) or die(mysql_error());
@@ -141,7 +141,7 @@ $x = 1;
 
 if (!isset($x))
 {
-$db = mysql_select_db("xbmc_videos75", $con);
+$db = mysql_select_db("$xbmc_db_database", $con);
 $sql = "SELECT * from episodeview WHERE strTitle LIKE \"$title\" AND c12 = \"$season\" ORDER BY c13";
 $sql2 = "SELECT COUNT(DISTINCT c12) as NumSeries from episodeview WHERE strTitle LIKE \"$title\" ";
 $result = mysql_query($sql) or die(mysql_error());
