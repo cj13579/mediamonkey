@@ -17,6 +17,13 @@ if(isset($_POST['dl'])){$dl = $_POST["dl"];}
 if(isset($_POST['stream'])){$stream = $_POST["stream"];}
 if(isset($_POST['type'])){$med_type = $_POST["type"];}
 if(isset($_POST['id'])){$id = $_POST["id"];}
+
+if(isset($_POST['showid'])){$showid = $_POST["showid"];}
+if(isset($_POST['epid'])){$epid = $_POST["epid"];}
+if(isset($_POST['season'])){$season = $_POST["season"];}
+if(isset($_POST['title'])){$title = $_POST["title"];}
+if(isset($_POST['showname'])){$showname = $_POST["showname"];}
+
 $date = date('Y-m-d H:i:s');
 if(isset($_POST['file'])){$file = $_POST['file'];}
 $host = $_SERVER['SERVER_NAME'];
@@ -38,16 +45,35 @@ if (isset($dl))
 
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
-$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
+//used to seperate tv from movie downloads
+$comp ="tvdl";
 
+
+if ( $med_type == $comp )
+{
+
+echo "this is a tv show";
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type, showid, epid, title, showname) 
+VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type', '$showid', '$epid', '$title', '$showname');";
+}
+else
+{
+echo "this is not a tv show";
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
+}
 
 if (!mysql_query($sql,$con))
 {
 	die('Error: ' . mysql_error());
 }
 
-	if (file_exists($download)) {
+echo "Show id: $showid";
+echo "Ep id: $epid";
+echo "Showname: $showname";
+echo "Title: $title";
+
+/*	if (file_exists($download)) {
     header("Content-Description: File Transfer");
     header("Content-Type: application/octet-stream");
     header("Content-Disposition: attachment; filename=".basename($download));
@@ -61,7 +87,14 @@ if (!mysql_query($sql,$con))
     readfile($download);
     exit;
     }
+*/
 }
+
+
+
+
+
+
 
 if(isset($stream))
 {

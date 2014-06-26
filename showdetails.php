@@ -126,7 +126,7 @@ if (!$con)
 }
 
 if(isset($_GET['id'])){$id = $_GET['id'];}
-if(isset($_GET['title'])){$title = $_GET['title'];}
+if(isset($_GET['title'])){$title = $_GET['title']; $show_title = $_GET['title'];}
 if(isset($_GET['season'])){$season = $_GET['season'];}else{$season = 1;}
 
 if (isset($season))
@@ -195,7 +195,7 @@ $result2 = mysql_query($sql2) or die(mysql_error());
     <p></p>
     
     	<div class="row">
-    		<div class="col-md-3"><b>Show: </b><? echo "$title"; echo " <b>Season: </b> $season";?> </div>
+    		<div class="col-md-3"><b>Show: </b><? echo "$show_title"; echo " <b>Season: </b> $season";?> </div>
     		<div class="col-md-6" align="right">Select Season: </div>
     		<div class="col-md-2">
     		<form role="form" method="get" action="showdetails.php">
@@ -279,7 +279,11 @@ $result2 = mysql_query($sql2) or die(mysql_error());
 		echo "<input type=\"hidden\" name=\"download\" value=\"".$str3."\">";
 		echo "<input type=\"hidden\" name=\"type\" value=\"tvdl\">";
 		echo "<input type=\"hidden\" name=\"file\" value=\"".$file."\">";
-		echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
+		echo "<input type=\"hidden\" name=\"showid\" value=\"".$id."\">";
+		echo "<input type=\"hidden\" name=\"epid\" value=\"".$epid."\">";
+		echo "<input type=\"hidden\" name=\"season\" value=\"".$season."\">";
+		echo "<input type=\"hidden\" name=\"title\" value=\"".$title."\">";
+		echo "<input type=\"hidden\" name=\"showname\" value=\"".$show_title."\">";
 		echo "<input type=\"submit\" name=\"submit\" value=\"Download\">";
 		echo "</form>";
 		echo "</div>";

@@ -6,6 +6,7 @@ if(!isset($_SESSION["user"]))
 	header("Location: http://$_SERVER[SERVER_NAME]/$uri/login.php");
 	exit;
 }
+
 ?>
 
 <?
@@ -50,7 +51,8 @@ $userlast = $_SESSION['userlast'];
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <![endif]--> 
+    
   </head>
 
   <body>
@@ -91,9 +93,15 @@ $userlast = $_SESSION['userlast'];
     <div class="container">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<p></p>
-		
+	 
+	<h2>Shows Downloaded</h2>
+	<div class="row">
+		<div class="col-md-6"><img width="500" height="350" src="graph_shows_dl.php" class="image-responsive"/></div>
+		<div class="col-md-6"><img width="500" height="350" src="graph_user_dl.php" class="image-responsive"/></div>
+	</div>
 		
 	<?php
+
 	$user = $_SESSION["user"];
 	if( "$user" == 'chris' )
 	{
