@@ -68,12 +68,8 @@ if (!mysql_query($sql,$con))
 	die('Error: ' . mysql_error());
 }
 
-echo "Show id: $showid";
-echo "Ep id: $epid";
-echo "Showname: $showname";
-echo "Title: $title";
 
-/*	if (file_exists($download)) {
+  if (file_exists($download)) {
     header("Content-Description: File Transfer");
     header("Content-Type: application/octet-stream");
     header("Content-Disposition: attachment; filename=".basename($download));
@@ -87,13 +83,8 @@ echo "Title: $title";
     readfile($download);
     exit;
     }
-*/
+
 }
-
-
-
-
-
 
 
 if(isset($stream))
