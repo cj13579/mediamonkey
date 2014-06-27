@@ -234,7 +234,15 @@ exit;
          	 	
       		</div>	
       	</div>
-      	<hr />     	 	
+      	<hr />   
+      	
+		<h2>Stats</h2>
+		<div class="row">
+			<div class="col-md-6"><img width="500" height="350" src="<? echo "graph_user_show_dl.php?user=$username"; ?>" class="image-responsive"/></div>
+			<div class="col-md-6"><img width="500" height="350" src="<? echo "graph_user_mov_dl.php?user=$username"; ?>" class="image-responsive"/></div>
+		</div> 
+		
+		 	 	
       	<div class="row">
       		<h2>Subscriptions</h2>
       		<p>Use the following form to subscribe to TV shows and movies. When you are subscribed you will be emailed when a new episode of that show or a new movie is added to the library. Just save your email address in the section above.</p>
