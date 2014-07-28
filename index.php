@@ -177,6 +177,46 @@ $userlast = $_SESSION['userlast'];
         	</div> -->
       	</div>
       	
+      	
+      	<div class="col-md-12">
+      	<p>
+      	<?
+		$dir = ".";
+		$output = array();
+		chdir($dir);
+		exec("git log --abbrev-commit",$output);
+		$history = array();
+		foreach($output as $line)
+		{
+		    if(strpos($line, 'commit')===0)
+		    {
+				if(!empty($commit))
+				{
+		    	array_push($history, $commit);	
+		    	unset($commit);
+				}
+			$commit['hash']   = substr($line, strlen('commit'));
+   		 	}
+    		else if(strpos($line, 'Author')===0)
+    		{
+				$commit['author'] = substr($line, strlen('Author:'));
+    		}
+    		else if(strpos($line, 'Date')===0)
+    		{
+				$commit['date']   = substr($line, strlen('Date:'));
+    		}
+    		else
+    		{		
+				$commit['message']  .= $line;
+    		}
+		}      	
+      	echo "MM version: ".$history[$row]['hash'];
+      	echo "<br />";
+      	echo "Published: ".$history[$row]['date'];;
+      	?>
+      	</p>
+      	</div>    
+      	
     <!-- End Body -->      	
     </div>
 
