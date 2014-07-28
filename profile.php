@@ -246,7 +246,7 @@ exit;
       	<div class="row">
       		<h2>Subscriptions</h2>
       		<p>Use the following form to subscribe to TV shows and movies. When you are subscribed you will be emailed when a new episode of that show or a new movie is added to the library. Just save your email address in the section above.</p>
-      	<div class="alert alert-info">You can register for TV shows and Movies but this functionality is not yet fully automated!</div>
+      	<div class="alert alert-info">TV Shows aren't there yet but the Movies bit works great!</div>
       	</div>
       	
       	<div class="row">
