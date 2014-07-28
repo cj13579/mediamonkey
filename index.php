@@ -94,69 +94,17 @@ $userlast = $_SESSION['userlast'];
 		
 		
 		<!-- New MM Jumbo -->
-		<?php
-		//set jumbo counter
-		$i = 0;
-		$from = time();
-		$to = strtotime('2014/05/05');
-		//only show the jumbotron within a certain date range
-		if ($from < $to) 
-		{	
-			//we are showing a jumbo so set this
-			$i = 1;
-		?>
+
 		<div class="jumbotron">
 			<div class="container">
-				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! MediaMonkey has been completely redesigned from the ground up to make it neater, faster and prettier. Click on the button below for more details about the changes.</p>
-				<p><a class="btn btn-primary btn-lg" href="blog.php#monkey04" role="button">Learn more &raquo;</a></p>
+				<p>When a new movie has been downloaded MM will email you! Want that?<br /> Click the button below to go to your profile, add your email address and subscribe to movies.</p>
+				<p><a class="btn btn-primary btn-lg" href="profile.php" role="button">My Profile&raquo;</a></p>
 			</div>
 		</div>
-
-		<?
-		//close if
-		}
-		
-		//only show the jumbotron if not already showing one.
-		if ($i < 1)
-		{	
-		?>
-		<div class="jumbotron">
-			<div class="container">
-				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! Don't forget to add your email address so that you we can let you know when a new show is added.</p>
-				<p><a class="btn btn-primary btn-lg" href="profile.php" role="button">Do it now &raquo;</a></p>
-			</div>
-		</div>	
-
-		<?
-		//close if
-		}
-		?>
-
 
 		<!-- End New MM jumbo -->
 		
-		
-		<!--
-		<?php
-		$now = time();
-		$date = '2014/05/18';
-		//only show the jumbotron within a certain date range
-		if (strtotime($date) > $now) 
-		{	
-		?>
-		<div class="jumbotron">
-			<div class="container">
-				<p><b><? echo "$userfirst"; ?></b>, you cheeky monkey! This is a new Jumbo for a different message.</p>
-				<p><a class="btn btn-primary btn-lg" href="blog.php" role="button">Learn more &raquo;</a></p>
-			</div>
-		</div>
-		
-		<?
-		//close if
-		}
-		?>
-		
-		-->
+
       	<!-- Example row of columns -->
       	<div class="row" align="center">
       		<div class="col-md-3">
@@ -177,7 +125,7 @@ $userlast = $_SESSION['userlast'];
         	</div> -->
       	</div>
       	
-      	
+      	<!--
       	<div class="col-md-12">
       	<p>
       	<?
@@ -215,7 +163,9 @@ $userlast = $_SESSION['userlast'];
       	echo "Published: ".$history[$row]['date'];;
       	?>
       	</p>
-      	</div>    
+      	</div>   
+      	
+      	--> 
       	
     <!-- End Body -->      	
     </div>
