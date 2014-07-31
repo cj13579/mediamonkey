@@ -6,8 +6,8 @@ if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
-//$yesterday = date('Y-m-d',strtotime("-1 days"));
-$yesterday = '2014-04-18';
+$yesterday = date('Y-m-d',strtotime("-1 days"));
+//$yesterday = '2014-04-18';
 
 mysql_select_db("$xbmc_db_database", $con);
 $new_movie_check="select $xbmc_db_database.movieview.c00, $xbmc_db_database.movieview.c01, $xbmc_db_database.movieview.c05, $xbmc_db_database.movieview.c07, $xbmc_db_database.movieview.c14 from $xbmc_db_database.movieview where $xbmc_db_database.movieview.dateAdded >= \"$yesterday%\" order by dateAdded desc limit 10;";
@@ -94,7 +94,7 @@ if( $rows > 0)
 }
 else
 {
-	echo "No new movies." ;
+//	echo "No new movies." ;
 }
 
 if($rows > 0)
