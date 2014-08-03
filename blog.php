@@ -78,8 +78,19 @@ if(!isset($_SESSION["user"]))
       	<p>
       	</div>
       	<div class="row">
-      	
-      	<div class="col-md-9" id="monkey04">
+      	<!-- <div class="col-md-12" id="whatever">
+      	<h3>Post Title!<small> April 18, 2014 by Chris</small></h3>
+      	Dont remove the below <p>
+      	<p>
+      	</div> -->
+      	<div class="col-md-12" id="moviesubs">
+      	<h3>Subscriptions and Profile updates!<small> August 03, 2014 by Chris</small></h3>
+      	<p>Well, I have suggested that Movie and TV show subscriptions has been coming for a while, and it is only half here, but Movie subscriptions are live! Also, I have put some new functionality on the profile page so if you login to <a href="http://www.cjblake.net/downloads">MediaMonkey</a> then you will be able to see all the awesome stuff you can see about yourself and how you use MediaMonkey.</p>
+      	<p>With regard to the Movie subscriptions, what this means is that if you add your email address and signup for movie updates then Media Monkey will email you every time there is a new movie added to the system. The database is checked at midnight everyday and if more than one film is added then it will tell you about all of them.</p>
+      	<p>Don't worry, I am working on the TV subscriptions as these are the most popular (more on this to come very shortly) but this is slightly more complicated and there is too much sunshine at the moment to spend it in front of my computer!</p>
+      	<p>
+      	</div>
+      	<div class="col-md-12" id="monkey04">
       	<h3>MediaMonkey 0.4 has landed!<small> April 18, 2014 by Chris</small></h3>
 <p>Well as you will be able to see, the changes in this version of MediaMonkey are pretty significant. Not only does MediaMonkey finally now have a logo (name suggestions please), but the whole look and feel of the website different. In addition, a lot of the back-end stuff has been changed to make the site run a lot better which I hope you will appreciate. Here are the major changes:</p>
 
@@ -105,17 +116,8 @@ if(!isset($_SESSION["user"]))
   <dd>...</dd>
 </dl> -->
 		</div>
-		<div class="col-md-3">
-		<p>
-
-			<div class="well">
-				<p>This is the Media Monkey blog. I'll use this space to go into detail about the changes to the system, new features, layout etc.</p>
-			</div>
-		</p>
-		</div>
-
-      	<div class="row"><div class="col-md-9"></div></div>
-      	<div class="row" id="monkey03"><div class="col-md-9"><h3>MediaMonkey 0.3 is done!<small> October 09, 2013 by Chris</small></h3>
+      	<div class="row"><div class="col-md-12"></div></div>
+      	<div class="row" id="monkey03"><div class="col-md-12"><h3>MediaMonkey 0.3 is done!<small> October 09, 2013 by Chris</small></h3>
 <p>The changes in this version are all feature additons which I hope you will find useful.</p>
 <dl>
   <dt>Updated homepage</dt>
@@ -130,8 +132,8 @@ if(!isset($_SESSION["user"]))
 </div>
 
 
-      	<div class="row"><div class="col-md-9"></div></div>
-      	<div class="row" id="monkey02"><div class="col-md-9"><h3>MediaMonkey 0.2 is here!<small> March 22, 2013 by Chris</small></h3>
+      	<div class="row"><div class="col-md-12"></div></div>
+      	<div class="row" id="monkey02"><div class="col-md-12"><h3>MediaMonkey 0.2 is here!<small> March 22, 2013 by Chris</small></h3>
 <p>Version 0.2 of MediaMonkey is up. A raft of changes in this version that should make everything lovely but most of the changes are around performance and statistics collection in the back end which aren't, unless you are a geek, particularly interesting. However, there are a couple on the functionality front that I'll go over:</p>
 <dl>
   <dt>look and feel</dt>
@@ -147,17 +149,15 @@ if(!isset($_SESSION["user"]))
   </dd>
 </dl>
 </div>
-<div class="col-md-3"></div>
 </div>
-      	<div class="row"><div class="col-md-9"></div><div class="col-md-3"></div></div>
-      	<div class="row" id="monkey"><div class="col-md-9"><h3>MediaMonkey arrives!<small> February 5, 2013 by Chris</small></h3>
+      	<div class="row"><div class="col-md-12"></div><div class="col-md-3"></div></div>
+      	<div class="row" id="monkey"><div class="col-md-12"><h3>MediaMonkey arrives!<small> February 5, 2013 by Chris</small></h3>
 <p>Welcome to Media Monkey. I hope you find it an improvement on the previous interface to my movies and TV. At the moment only the Movies section is fully working with the new look and while there is a "library" view available for TV you can't download anything through it yet. Don't fear though, you can us the "tv" and "tv2" links as of old to get all available TV episodes.</p>
 			
 			<p>I don't know whether or not any of you do but for quite a few of the TV episodes and a few of the movies you can stream them straight from your browser (Chrome works the best). The files need to be MP4. If you want to do that with any of the films then you will need to use the "films" menu which will take you to the familiar boring site. The library mode will force you to download the file.</p>
 			
 			<p>Although I have tested downloading a few movies there is a chance that some stuff doesn't work. So, please let me know if anything is broken and I'll do my best to get it sorted for you ASAP.</p>
 			<p> Ta, Chris.</p>
-		<div class="col-md-3"></div>
 	</div></div>
 
     </div>
