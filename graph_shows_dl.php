@@ -28,7 +28,8 @@ include('phpgraphlib.php');
 $graph = new PHPGraphLib(500, 350);
 $graph->addData($data);
 $graph->setTitle('Shows Downloaded');
-$graph->setXValuesHorizontal(true);
+$graph->setXValuesHorizontal(false);
+$graph->setupXAxis(30);
 $graph->setGradient('red', 'maroon');
 $graph->createGraph();
 
