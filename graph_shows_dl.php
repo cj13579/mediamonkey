@@ -25,7 +25,7 @@ while ( $r = mysql_fetch_array($result))
 
 
 include('phpgraphlib.php');
-$graph = new PHPGraphLib(500, 350);
+$graph = new PHPGraphLib(800, 600);
 $graph->addData($data);
 $graph->setTitle('Shows Downloaded');
 $graph->setXValuesHorizontal(false);
