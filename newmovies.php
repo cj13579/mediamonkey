@@ -7,10 +7,10 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 $yesterday = date('Y-m-d',strtotime("-1 days"));
-//$yesterday = '2014-04-18';
+//$yesterday = '2014-08-12';
 
 mysql_select_db("$xbmc_db_database", $con);
-$new_movie_check="select $xbmc_db_database.movieview.c00, $xbmc_db_database.movieview.c01, $xbmc_db_database.movieview.c05, $xbmc_db_database.movieview.c07, $xbmc_db_database.movieview.c14 from $xbmc_db_database.movieview where $xbmc_db_database.movieview.dateAdded >= \"$yesterday%\" order by dateAdded desc limit 10;";
+$new_movie_check="select $xbmc_db_database.movieview.c00, $xbmc_db_database.movieview.c01, $xbmc_db_database.movieview.c05, $xbmc_db_database.movieview.c07, $xbmc_db_database.movieview.c14 from $xbmc_db_database.movieview where $xbmc_db_database.movieview.dateAdded LIKE \"$yesterday%\" order by dateAdded desc limit 10;";
 
 $new_movies = mysql_query($new_movie_check) or die(mysql_error());
 $rows = mysql_num_rows($new_movies);
