@@ -46,19 +46,18 @@ if (isset($dl))
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
 //used to seperate tv from movie downloads
-$comp ="tvdl";
 
 
-if ( $med_type == $comp )
+
+if ( "$med_type" == "tvdl" )
 {
-
-echo "this is a tv show";
+//echo "this is a tv show";
 $sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type, showid, epid, title, showname) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type', '$showid', '$epid', '$title', '$showname');";
 }
-else
+if ( "$med_type" == "movdl" )
 {
-echo "this is not a tv show";
+//echo "this is not a tv show";
 $sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
 VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 }
@@ -69,7 +68,7 @@ if (!mysql_query($sql,$con))
 }
 
 
-  if (file_exists($download)) {
+if (file_exists($download)) {
     header("Content-Description: File Transfer");
     header("Content-Type: application/octet-stream");
     header("Content-Disposition: attachment; filename=".basename($download));
@@ -96,9 +95,7 @@ if ($stream == "1")
 $con = mysql_connect("$db_host","$db_user","$db_pass");
 
 
-$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) 
-
-VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
+$sql = "INSERT INTO $db_database.$db_table (user, idMovie, dttm, stat_id, type, file, med_type) VALUES ('$username', '$id', '$date','','$type', '$file', '$med_type');";
 
 if (!mysql_query($sql,$con))
 {
